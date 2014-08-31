@@ -1,0 +1,40 @@
+﻿<section class="mainbar" data-ng-controller="history as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+                        <h3>Import History</h3>
+                        <div>
+                                                    <div class="widget-content text-center text-info">
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Record Processed</th>
+                                        <th>New Records</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="h in vm.lojackAuditProcess">
+                                        <td>{{h.processDate}}</td>
+                                        <td>{{h.recordsProcessed}}</td>
+                                        <td>{{h.newRecords}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

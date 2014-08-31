@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "My Todo List";
+}
+
+
+<header>
+    <h1>@ViewBag.Title</h1>
+</header>
+
+<div id="main-content" data-ng-app="LojackAdmin">
+
+    
+    <section id="lists" >
+        
+    </section>
+</div>
+
+
+    @section scripts {
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/todo")
+
+}
