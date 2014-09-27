@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Uniforms">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="SpoName" type="xs:string" minOccurs="0" />
+                <xs:element name="CoachName" type="xs:string" minOccurs="0" />
+                <xs:element name="PlayerName" type="xs:string" minOccurs="0" />
+                <xs:element name="CoachShirt" type="xs:string" minOccurs="0" />
+                <xs:element name="ShirtSize" type="xs:string" minOccurs="0" />
+                <xs:element name="TeamColor" type="xs:string" minOccurs="0" />
+                <xs:element name="DivDesc" type="xs:string" minOccurs="0" />
+                <xs:element name="TeamNumber" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+ </NewDataSet>

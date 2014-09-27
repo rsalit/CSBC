@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{36B81F66-490A-42B7-9863-97E324970919}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CSBCHOOPS_COM</RootNamespace>
+    <AssemblyName>CSBCHOOPS_COM</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>CSBCHOOPS_COM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>CSBCHOOPS_COM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Business Objects\Common\2.8\managed\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Business Objects\Common\2.8\managed\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Business Objects\Common\2.8\managed\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Business Objects\Common\2.8\managed\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CSBCHOOPS_COM, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CSBCHOOPS_COM.dll</HintPath>
+    </Reference>
+    <Reference Include="CSBC_Components, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CSBC_Components.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.Web">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Essential Objects\EO.Web Controls 2011\EO.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.CSharp" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="bin\CSBCHOOPS_COM.dll" />
+    <Content Include="bin\CSBCHOOPS_COM.pdb" />
+    <Content Include="bin\CSBCHOOPS_COM.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="BoardInfoControl.ascx" />
+    <Content Include="Calendar.aspx" />
+    <Content Include="ContactUs.aspx" />
+    <Content Include="Documents.aspx" />
+    <Content Include="GameSchedules.aspx" />
+    <Content Include="gameschedules.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="GamesNotReady.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="images\AAU.jpg" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\gray_bg.gif" />
+    <Content Include="images\header_img.jpg" />
+    <Content Include="images\heading_bg.gif" />
+    <Content Include="images\pic_3.jpg" />
+    <Content Include="images\red-bullet.jpg" />
+    <Content Include="images\sky.jpg" />
+    <Content Include="images\spacer.gif" />
+    <Content Include="index.aspx" />
+    <Content Include="Index.html" />
+    <Content Include="MainMenu.ascx" />
+    <Content Include="MannyFuneral.html" />
+    <Content Include="Movies\AAU.jpg" />
+    <Content Include="Movies\bg.jpg" />
+    <Content Include="Movies\gray_bg.gif" />
+    <Content Include="Movies\header_img.jpg" />
+    <Content Include="Movies\heading_bg.gif" />
+    <Content Include="Movies\pic_3.jpg" />
+    <Content Include="Movies\red-bullet.jpg" />
+    <Content Include="Movies\sky.jpg" />
+    <Content Include="Movies\spacer.gif" />
+    <Content Include="Parkridge.png" />
+    <Content Include="Photos.aspx" />
+    <Content Include="RegTemp.aspx" />
+    <Content Include="Report.aspx" />
+    <Content Include="Reports\DivSchedule.xml" />
+    <Content Include="Reports\DivStanding.xml" />
+    <Content Include="Schedule.aspx" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="SponsorInfoControl.ascx" />
+    <Content Include="Sponsors.aspx" />
+    <Content Include="style.css" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\bootstrap.js" />
+    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\bootstrap.min.js" />
+    <Content Include="Styles\glyphicons-halflings-regular.svg" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Test.htm" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.designer.vb">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About.aspx.vb">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="BoardInfoControl.ascx.designer.vb">
+      <DependentUpon>BoardInfoControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="BoardInfoControl.ascx.vb">
+      <DependentUpon>BoardInfoControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Calendar.aspx.vb">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContactUs.aspx.designer.vb">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactUs.aspx.vb">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Documents.aspx.designer.vb">
+      <DependentUpon>Documents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Documents.aspx.vb">
+      <DependentUpon>Documents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GamesNotReady.aspx.designer.vb">
+      <DependentUpon>GamesNotReady.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GamesNotReady.aspx.vb">
+      <DependentUpon>GamesNotReady.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.designer.vb">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.vb">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainMenu.ascx.designer.vb">
+      <DependentUpon>MainMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.ascx.vb">
+      <DependentUpon>MainMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegTemp.aspx.designer.vb">
+      <DependentUpon>RegTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegTemp.aspx.vb">
+      <DependentUpon>RegTemp.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Report.aspx.designer.vb">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report.aspx.vb">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Schedule.aspx.designer.vb">
+      <DependentUpon>Schedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule.aspx.vb">
+      <DependentUpon>Schedule.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SponsorInfoControl.ascx.designer.vb">
+      <DependentUpon>SponsorInfoControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SponsorInfoControl.ascx.vb">
+      <DependentUpon>SponsorInfoControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sponsors.aspx.designer.vb">
+      <DependentUpon>Sponsors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sponsors.aspx.vb">
+      <DependentUpon>Sponsors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="webforms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eo_web.ashx" />
+    <None Include="ADScores.pdf" />
+    <None Include="ClockRules.pdf" />
+    <None Include="CourtsLocations.pdf" />
+    <None Include="GeneralRules.pdf" />
+    <None Include="HSB.pdf" />
+    <None Include="HSG.pdf" />
+    <None Include="IB.pdf" />
+    <None Include="IG.pdf" />
+    <None Include="INTB.pdf" />
+    <None Include="JVB.pdf" />
+    <None Include="JVG.pdf" />
+    <None Include="Maxey.pdf" />
+    <None Include="MEN18.pdf" />
+    <Content Include="packages.config" />
+    <None Include="ParkRules.pdf" />
+    <Content Include="pdf\GeneralRules.pdf" />
+    <None Include="Playoffs.pdf" />
+    <None Include="REGISTRATION FORM.pdf" />
+    <Content Include="Reports\FI.pdf" />
+    <Content Include="Reports\FJV.pdf" />
+    <Content Include="Reports\HS.pdf" />
+    <Content Include="Reports\M18.pdf" />
+    <Content Include="Reports\SI.pdf" />
+    <Content Include="Reports\SJV.pdf" />
+    <Content Include="Reports\sjvg.pdf" />
+    <Content Include="Reports\t2.pdf" />
+    <Content Include="Reports\t3.pdf" />
+    <Content Include="Reports\t4.pdf" />
+    <Content Include="Reports\wmn.pdf" />
+    <None Include="Rules.pdf" />
+    <None Include="Schedule.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scholarship Application.pdf" />
+    <None Include="Scholarship Template.doc" />
+    <None Include="Scholarship.pdf" />
+    <None Include="Scorebook.pdf" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <None Include="SponsorForm.docx" />
+    <None Include="SponsorForm.pdf" />
+    <Content Include="Styles\glyphicons-halflings-regular.eot" />
+    <Content Include="Styles\glyphicons-halflings-regular.ttf" />
+    <Content Include="Styles\glyphicons-halflings-regular.woff" />
+    <None Include="T1.pdf" />
+    <None Include="T2.pdf" />
+    <None Include="T3.pdf" />
+    <None Include="T4.pdf" />
+    <None Include="TG.pdf" />
+    <None Include="TieBreaker.pdf" />
+    <None Include="Tryouts.pdf" />
+    <None Include="VB.pdf" />
+    <None Include="VG.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report1.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSBC.Core\CSBC.Core.csproj">
+      <Project>{f51ef06b-4d4e-42f2-9608-a7bd63c6cdc6}</Project>
+      <Name>CSBC.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58390</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

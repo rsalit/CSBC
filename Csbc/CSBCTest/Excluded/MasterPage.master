@@ -1,0 +1,137 @@
+<%@ Master Language="C#" Inherits="CSBC.Admin.Web.MasterPage" AutoEventWireup="true" CodeFile="Masterpage.Master.cs" %>
+
+<%@ Register Src="~/Header.ascx" TagPrefix="uc1" TagName="Header" %>
+
+<!DOCTYPE  html 
+<html lang="en">
+<head id="Head1" runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coral Springs Basketball Club</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" media="screen" />
+    <style type="text/css">
+        body {
+            padding-top: 30px;
+        }
+    </style>
+    <link href="~/Content/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Content/body.css" rel="stylesheet" />
+    <!--<link href="StyleSheet.css" rel="stylesheet" type="text/css" />-->
+</head>
+<body>
+    <div class="container">
+        <asp:Image ID="topImage" runat="server" Height="107px" CssClass="center-block" ImageUrl="images\topcsbc.jpg"
+            Width="770px" />
+        
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#">CSBC</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://www.csbchoops.com" target="_blank">CSBC Public Site</a></li>
+                                <li><a href="SelectSeason.aspx">Select Other Season</a></li>
+                                <li><a href="PasswordReset.aspx">Change Password</a></li>
+                                <li><a href="LogOut.aspx">Log Out</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="Households.aspx" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Transfer.aspx?Transfer=Announcements.aspx">Announcements</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Board.aspx">Board of Directors</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Calendar.aspx">Calendar</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Content.aspx">Content Management</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Households.aspx">Households</a></li>
+                                <li><a href="Transfer.aspx?Transfer=People.aspx">People</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Colors1.aspx">Uniform Colors</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Users.aspx">Users Security</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Season<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Transfer.aspx?Transfer=Coaches1.aspx">Coaches</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Division1.aspx">Divisions</a></li>
+                                <li><a href="Transfer.aspx?Transfer=SearchRegPay.aspx">Registration / Payments</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Refunds.aspx">Refunds</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Games.aspx">Games</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Seasons.aspx">Seasons</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Sponsors1.aspx">Sponsors</a></li>
+                                <li><a href="Transfer.aspx?Transfer=Teams.aspx">TeamBuilder</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>Board Members</li>
+                                <li>Coaches</li>
+                                <li>Directors Phones</li>
+                                <li>Divisions</li>
+                                <li>Games Schedules</li>
+                                <li>Player Lists</li>
+                                <li>Refunds</li>
+                                <li>Sponsors</li>
+                                <li>Sponsor Books</li>
+                                <li>Team Rosters</li>
+                                <li>Tryouts (Draft list)</li>
+                                <li>Uniforms</li>
+                                <li>Unpaid List</li>
+                                <li>Volunteers</li>
+                                <li>Waiting List</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <uc1:Header runat="server" ID="Header" />
+    </div>
+
+    <div class="container">
+
+
+        <div class="center-block">
+            <form runat="server" role="form">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </form>
+        </div>
+
+    </div>
+    <!-- <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>Tournament Brackets</li>
+        </ul>
+    </li>
+    -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+</body>
+
+
+
+
+</html>

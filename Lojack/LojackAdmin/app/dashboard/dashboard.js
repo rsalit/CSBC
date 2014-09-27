@@ -15,13 +15,13 @@
         vm.messageCount = 0;
         vm.newReocrdCount = 0;
         vm.people = [];
-        vm.lojackAuditProcess = [];
+        vm.audit = [];
         vm.title = 'Dashboard';
 
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPeople(), getNewRecordCount(), getHistory()];
+            var promises = [getMessageCount(), getPeople(), getNewRecordCount(), getAuditPartials()];
             common.activateController(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
         }
@@ -43,8 +43,8 @@
             });
         }
         function getHistory() {
-            return datacontext.getHistory().then(function (data) {
-                return vm.lojackAuditProcess = data;
+            return datacontext.getAuditPartials().then(function (data) {
+                return vm.audit = data;
             });
         }
     }

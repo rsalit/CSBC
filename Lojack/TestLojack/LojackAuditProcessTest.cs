@@ -54,5 +54,12 @@ namespace TestLojack
             var data = rep.GetByDateRange(DateTime.Today.AddDays(-7), DateTime.Today).ToList();
             Assert.IsTrue(data.Any());
         }
+        [TestMethod]
+        public void GetAllTest()
+        {
+            var rep = new LojackAuditProcessRepository(new LojackContext());
+            var data = rep.GetAll().ToList();
+            Assert.IsTrue(data.Any());
+        }
     }
 }

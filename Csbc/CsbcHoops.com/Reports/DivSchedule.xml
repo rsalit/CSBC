@@ -1,0 +1,680 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="DivSchedule">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="MILITARY" type="xs:int" minOccurs="0" />
+                <xs:element name="Division" type="xs:string" minOccurs="0" />
+                <xs:element name="Date" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="Time" type="xs:string" minOccurs="0" />
+                <xs:element name="Location" type="xs:string" minOccurs="0" />
+                <xs:element name="Home" type="xs:string" minOccurs="0" />
+                <xs:element name="Visitor" type="xs:string" minOccurs="0" />
+                <xs:element name="H-Score" type="xs:int" minOccurs="0" />
+                <xs:element name="V-Score" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <DivSchedule>
+    <MILITARY>9</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-24T00:00:00-04:00</Date>
+    <Time>9:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>01</Home>
+    <Visitor>09</Visitor>
+    <H-Score>32</H-Score>
+    <V-Score>16</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>10</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-24T00:00:00-04:00</Date>
+    <Time>10:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>11</Home>
+    <Visitor>04</Visitor>
+    <H-Score>17</H-Score>
+    <V-Score>10</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>11</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-24T00:00:00-04:00</Date>
+    <Time>11:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>05</Home>
+    <Visitor>10</Visitor>
+    <H-Score>5</H-Score>
+    <V-Score>20</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>12</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-24T00:00:00-04:00</Date>
+    <Time>12:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>08</Home>
+    <Visitor>07</Visitor>
+    <H-Score>11</H-Score>
+    <V-Score>16</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>13</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-24T00:00:00-04:00</Date>
+    <Time>1:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>06</Home>
+    <Visitor>02</Visitor>
+    <H-Score>20</H-Score>
+    <V-Score>6</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-27T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>03</Home>
+    <Visitor>02</Visitor>
+    <H-Score>11</H-Score>
+    <V-Score>15</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-27T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>04</Home>
+    <Visitor>08</Visitor>
+    <H-Score>8</H-Score>
+    <V-Score>11</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-27T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>09</Home>
+    <Visitor>11</Visitor>
+    <H-Score>14</H-Score>
+    <V-Score>26</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-27T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>07</Home>
+    <Visitor>06</Visitor>
+    <H-Score>13</H-Score>
+    <V-Score>18</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-03-27T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>01</Home>
+    <Visitor>10</Visitor>
+    <H-Score>16</H-Score>
+    <V-Score>24</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-10T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>02</Home>
+    <Visitor>01</Visitor>
+    <H-Score>16</H-Score>
+    <V-Score>18</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-10T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>10</Home>
+    <Visitor>03</Visitor>
+    <H-Score>14</H-Score>
+    <V-Score>5</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-10T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>06</Home>
+    <Visitor>04</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-10T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>08</Home>
+    <Visitor>09</Visitor>
+    <H-Score>20</H-Score>
+    <V-Score>10</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-10T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>11</Home>
+    <Visitor>05</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>9</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-14T00:00:00-04:00</Date>
+    <Time>9:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>03</Home>
+    <Visitor>05</Visitor>
+    <H-Score>16</H-Score>
+    <V-Score>14</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>10</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-14T00:00:00-04:00</Date>
+    <Time>10:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>11</Home>
+    <Visitor>02</Visitor>
+    <H-Score>18</H-Score>
+    <V-Score>20</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>11</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-14T00:00:00-04:00</Date>
+    <Time>11:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>09</Home>
+    <Visitor>06</Visitor>
+    <H-Score>16</H-Score>
+    <V-Score>30</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>12</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-14T00:00:00-04:00</Date>
+    <Time>12:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>04</Home>
+    <Visitor>07</Visitor>
+    <H-Score>6</H-Score>
+    <V-Score>18</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>13</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-14T00:00:00-04:00</Date>
+    <Time>1:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>08</Home>
+    <Visitor>10</Visitor>
+    <H-Score>11</H-Score>
+    <V-Score>22</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-17T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>05</Home>
+    <Visitor>01</Visitor>
+    <H-Score>10</H-Score>
+    <V-Score>15</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-17T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>10</Home>
+    <Visitor>11</Visitor>
+    <H-Score>17</H-Score>
+    <V-Score>20</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-17T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>02</Home>
+    <Visitor>08</Visitor>
+    <H-Score>15</H-Score>
+    <V-Score>5</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-17T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>07</Home>
+    <Visitor>09</Visitor>
+    <H-Score>20</H-Score>
+    <V-Score>10</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-17T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>03</Home>
+    <Visitor>06</Visitor>
+    <H-Score>12</H-Score>
+    <V-Score>14</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>9</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-21T00:00:00-04:00</Date>
+    <Time>9:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>01</Home>
+    <Visitor>03</Visitor>
+    <H-Score>23</H-Score>
+    <V-Score>16</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>10</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-21T00:00:00-04:00</Date>
+    <Time>10:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>10</Home>
+    <Visitor>06</Visitor>
+    <H-Score>6</H-Score>
+    <V-Score>8</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>11</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-21T00:00:00-04:00</Date>
+    <Time>11:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>09</Home>
+    <Visitor>04</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>12</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-21T00:00:00-04:00</Date>
+    <Time>12:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>05</Home>
+    <Visitor>08</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>13</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-21T00:00:00-04:00</Date>
+    <Time>1:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>02</Home>
+    <Visitor>07</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-24T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>03</Home>
+    <Visitor>11</Visitor>
+    <H-Score>15</H-Score>
+    <V-Score>10</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-24T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>06</Home>
+    <Visitor>05</Visitor>
+    <H-Score>10</H-Score>
+    <V-Score>2</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-24T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>04</Home>
+    <Visitor>02</Visitor>
+    <H-Score>7</H-Score>
+    <V-Score>15</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-24T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>07</Home>
+    <Visitor>10</Visitor>
+    <H-Score>11</H-Score>
+    <V-Score>20</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-24T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>01</Home>
+    <Visitor>08</Visitor>
+    <H-Score>15</H-Score>
+    <V-Score>8</V-Score>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>9</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-28T00:00:00-04:00</Date>
+    <Time>9:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>08</Home>
+    <Visitor>03</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>10</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-28T00:00:00-04:00</Date>
+    <Time>10:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>11</Home>
+    <Visitor>01</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>11</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-28T00:00:00-04:00</Date>
+    <Time>11:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>10</Home>
+    <Visitor>04</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>12</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-28T00:00:00-04:00</Date>
+    <Time>12:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>02</Home>
+    <Visitor>09</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>13</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-04-28T00:00:00-04:00</Date>
+    <Time>1:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>05</Home>
+    <Visitor>07</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-01T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>04</Home>
+    <Visitor>05</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-01T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>08</Home>
+    <Visitor>11</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-01T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>07</Home>
+    <Visitor>03</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-01T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>09</Home>
+    <Visitor>10</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-01T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>06</Home>
+    <Visitor>01</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>9</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-05T00:00:00-04:00</Date>
+    <Time>9:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>11</Home>
+    <Visitor>06</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>10</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-05T00:00:00-04:00</Date>
+    <Time>10:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>10</Home>
+    <Visitor>02</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>11</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-05T00:00:00-04:00</Date>
+    <Time>11:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>05</Home>
+    <Visitor>09</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>12</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-05T00:00:00-04:00</Date>
+    <Time>12:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>01</Home>
+    <Visitor>07</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>13</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-05T00:00:00-04:00</Date>
+    <Time>1:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>08</Home>
+    <Visitor>04</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-08T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>10</Home>
+    <Visitor>05</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-08T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>07</Home>
+    <Visitor>11</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-08T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>04</Home>
+    <Visitor>01</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-08T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>02</Home>
+    <Visitor>03</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-08T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>06</Home>
+    <Visitor>08</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>9</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-12T00:00:00-04:00</Date>
+    <Time>9:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>03</Home>
+    <Visitor>10</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>10</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-12T00:00:00-04:00</Date>
+    <Time>10:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>04</Home>
+    <Visitor>11</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>11</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-12T00:00:00-04:00</Date>
+    <Time>11:00 AM</Time>
+    <Location>MINIEAST</Location>
+    <Home>02</Home>
+    <Visitor>05</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>12</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-12T00:00:00-04:00</Date>
+    <Time>12:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>06</Home>
+    <Visitor>07</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>13</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-12T00:00:00-04:00</Date>
+    <Time>1:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>09</Home>
+    <Visitor>01</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-15T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>03</Home>
+    <Visitor>04</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-15T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>11</Home>
+    <Visitor>09</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-15T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>05</Home>
+    <Visitor>06</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>18</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-15T00:00:00-04:00</Date>
+    <Time>6:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>07</Home>
+    <Visitor>08</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>19</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-15T00:00:00-04:00</Date>
+    <Time>7:00 PM</Time>
+    <Location>MINIWEST (S)</Location>
+    <Home>01</Home>
+    <Visitor>02</Visitor>
+  </DivSchedule>
+  <DivSchedule>
+    <MILITARY>20</MILITARY>
+    <Division>SI_GIRLS</Division>
+    <Date>2007-05-16T00:00:00-04:00</Date>
+    <Time>8:00 PM</Time>
+    <Location>MINIEAST</Location>
+    <Home>09</Home>
+    <Visitor>03</Visitor>
+  </DivSchedule>
+</NewDataSet>

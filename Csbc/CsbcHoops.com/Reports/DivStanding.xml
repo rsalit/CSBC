@@ -1,0 +1,135 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="DivStanding">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="TeamNo" type="xs:int" minOccurs="0" />
+                <xs:element name="TeamName" type="xs:string" minOccurs="0" />
+                <xs:element name="ScheduleName" type="xs:string" minOccurs="0" />
+                <xs:element name="DivNO" type="xs:string" minOccurs="0" />
+                <xs:element name="Team" type="xs:string" minOccurs="0" />
+                <xs:element name="Won" type="xs:int" minOccurs="0" />
+                <xs:element name="Lost" type="xs:int" minOccurs="0" />
+                <xs:element name="PCT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TieBreaker" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Streak" type="xs:string" minOccurs="0" />
+                <xs:element name="PF" type="xs:int" minOccurs="0" />
+                <xs:element name="PA" type="xs:int" minOccurs="0" />
+                <xs:element name="GB" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <DivStanding>
+    <TeamNo>68</TeamNo>
+    <TeamName>SI_BOYS-7</TeamName>
+    <ScheduleName>SI_BOYS</ScheduleName>
+    <DivNO>20</DivNO>
+    <Team>7(GOLD)</Team>
+    <Won>7</Won>
+    <Lost>0</Lost>
+    <PCT>1.0000</PCT>
+    <TieBreaker>1.0000</TieBreaker>
+    <Streak>Won 7</Streak>
+    <PF>251</PF>
+    <PA>127</PA>
+    <GB>0.0</GB>
+  </DivStanding>
+  <DivStanding>
+    <TeamNo>45</TeamNo>
+    <TeamName>SI_BOYS-4</TeamName>
+    <ScheduleName>SI_BOYS</ScheduleName>
+    <DivNO>20</DivNO>
+    <Team>4(ISLAND YELLOW)</Team>
+    <Won>5</Won>
+    <Lost>1</Lost>
+    <PCT>0.8333</PCT>
+    <TieBreaker>0.8333</TieBreaker>
+    <Streak>Won 2</Streak>
+    <PF>194</PF>
+    <PA>118</PA>
+    <GB>1.5</GB>
+  </DivStanding>
+  <DivStanding>
+    <TeamNo>42</TeamNo>
+    <TeamName>SI_BOYS-1</TeamName>
+    <ScheduleName>SI_BOYS</ScheduleName>
+    <DivNO>20</DivNO>
+    <Team>1(OXFORD GREY)</Team>
+    <Won>4</Won>
+    <Lost>2</Lost>
+    <PCT>0.6667</PCT>
+    <TieBreaker>0.6667</TieBreaker>
+    <Streak>Lost 1</Streak>
+    <PF>167</PF>
+    <PA>123</PA>
+    <GB>2.5</GB>
+  </DivStanding>
+  <DivStanding>
+    <TeamNo>63</TeamNo>
+    <TeamName>SI_BOYS-6</TeamName>
+    <ScheduleName>SI_BOYS</ScheduleName>
+    <DivNO>20</DivNO>
+    <Team>6(MAROON)</Team>
+    <Won>2</Won>
+    <Lost>4</Lost>
+    <PCT>0.3333</PCT>
+    <TieBreaker>0.3333</TieBreaker>
+    <Streak>Won 1</Streak>
+    <PF>125</PF>
+    <PA>185</PA>
+    <GB>4.5</GB>
+  </DivStanding>
+  <DivStanding>
+    <TeamNo>43</TeamNo>
+    <TeamName>SI_BOYS-2</TeamName>
+    <ScheduleName>SI_BOYS</ScheduleName>
+    <DivNO>20</DivNO>
+    <Team>2(LIGHT BLUE)</Team>
+    <Won>2</Won>
+    <Lost>5</Lost>
+    <PCT>0.2857</PCT>
+    <TieBreaker>1.0000</TieBreaker>
+    <Streak>Lost 3</Streak>
+    <PF>130</PF>
+    <PA>200</PA>
+    <GB>5.0</GB>
+  </DivStanding>
+  <DivStanding>
+    <TeamNo>46</TeamNo>
+    <TeamName>SI_BOYS-5</TeamName>
+    <ScheduleName>SI_BOYS</ScheduleName>
+    <DivNO>20</DivNO>
+    <Team>5(NAVY BLUE)</Team>
+    <Won>2</Won>
+    <Lost>5</Lost>
+    <PCT>0.2857</PCT>
+    <TieBreaker>0.0000</TieBreaker>
+    <Streak>Lost 1</Streak>
+    <PF>105</PF>
+    <PA>156</PA>
+    <GB>5.0</GB>
+  </DivStanding>
+  <DivStanding>
+    <TeamNo>44</TeamNo>
+    <TeamName>SI_BOYS-3</TeamName>
+    <ScheduleName>SI_BOYS</ScheduleName>
+    <DivNO>20</DivNO>
+    <Team>3(RED)</Team>
+    <Won>1</Won>
+    <Lost>6</Lost>
+    <PCT>0.1429</PCT>
+    <TieBreaker>0.1429</TieBreaker>
+    <Streak>Won 1</Streak>
+    <PF>115</PF>
+    <PA>178</PA>
+    <GB>6.0</GB>
+  </DivStanding>
+</NewDataSet>

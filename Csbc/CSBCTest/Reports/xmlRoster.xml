@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Roster">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="RowNbr1" type="xs:int" minOccurs="0" />
+                <xs:element name="Col1Name" type="xs:string" minOccurs="0" />
+                <xs:element name="Col1Phone" type="xs:string" minOccurs="0" />
+                <xs:element name="SPC" type="xs:string" minOccurs="0" />
+                <xs:element name="RowNbr2" type="xs:int" minOccurs="0" />
+                <xs:element name="Col2Name" type="xs:string" minOccurs="0" />
+                <xs:element name="Col2Phone" type="xs:string" minOccurs="0" />
+                <xs:element name="AD" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+ </NewDataSet>

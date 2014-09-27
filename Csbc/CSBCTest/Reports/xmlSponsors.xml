@@ -1,0 +1,34 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Sponsors">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="SponsorName" type="xs:string" minOccurs="0" />
+                <xs:element name="ContactName" type="xs:string" minOccurs="0" />
+                <xs:element name="PlayerName" type="xs:string" minOccurs="0" />
+                <xs:element name="Team" type="xs:int" minOccurs="0" />
+                <xs:element name="Address" type="xs:string" minOccurs="0" />
+                <xs:element name="City" type="xs:string" minOccurs="0" />
+                <xs:element name="State" type="xs:string" minOccurs="0" />
+                <xs:element name="ZipCode" type="xs:string" minOccurs="0" />
+                <xs:element name="Phone" type="xs:string" minOccurs="0" />
+                <xs:element name="DivDesc" type="xs:string" minOccurs="0" />
+                <xs:element name="TeamNbr" type="xs:int" minOccurs="0" />
+                <xs:element name="AmountPaid" type="xs:decimal" minOccurs="0" />
+                <xs:element name="OnlineFlag" type="xs:string" minOccurs="0" />
+                <xs:element name="MinDate" type="xs:date" minOccurs="0" />
+                <xs:element name="Gender" type="xs:string" minOccurs="0" />
+                <xs:element name="FeeID" type="xs:decimal" minOccurs="0" />
+                <xs:element name="URL" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+ </NewDataSet>

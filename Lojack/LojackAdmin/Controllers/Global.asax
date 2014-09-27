@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="LojackAdmin.Controllers.WebApiApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="LojackAdmin.Web.Controllers.WebApiApplication" Language="C#" %>

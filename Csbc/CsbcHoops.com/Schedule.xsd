@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Games" targetNamespace="http://tempuri.org/Games.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/Games.xsd" xmlns:mstns="http://tempuri.org/Games.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GetSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Military" type="xs:string" />
+        <xs:element name="ScheduleNumber" type="xs:int" />
+        <xs:element name="GameNumber" type="xs:int" />
+        <xs:element name="Division" type="xs:string" />
+        <xs:element name="GameDateTime" type="xs:string" />
+        <xs:element name="Home" type="xs:string" />
+        <xs:element name="Visitor" type="xs:string" />
+        <xs:element name="LocationName" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

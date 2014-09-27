@@ -39,12 +39,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Breeze.ContextProvider">
+      <HintPath>..\Lojack\packages\Breeze.Server.ContextProvider.1.5.0\lib\Breeze.ContextProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Breeze.ContextProvider.EF6">
+      <HintPath>..\Lojack\packages\Breeze.Server.ContextProvider.EF6.1.5.0\lib\Breeze.ContextProvider.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lojack\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -75,6 +85,10 @@
       <Project>{8425627f-433f-4167-98dd-7310613a9224}</Project>
       <Name>LojackImporter</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lojack\Lojack.Core\Lojack.Core.csproj">
+      <Project>{0521d2ed-c49c-46db-984b-f98730e2c1a6}</Project>
+      <Name>Lojack.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RPDSSLib\RPDSSlib.csproj">
       <Project>{26e215bf-17f9-4547-ab92-fe2b515ebb8f}</Project>
       <Name>RPDSSlib</Name>
@@ -83,6 +97,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="content\breeze.directives.css" />
+    <Content Include="Scripts\breeze.angular.js" />
+    <Content Include="Scripts\breeze.debug.js" />
+    <Content Include="Scripts\breeze.directives.js" />
+    <Content Include="Scripts\breeze.intellisense.js" />
+    <Content Include="Scripts\breeze.min.js" />
+    <Content Include="Scripts\q.js" />
+    <Content Include="Scripts\q.min.js" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
