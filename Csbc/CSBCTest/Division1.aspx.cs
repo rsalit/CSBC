@@ -769,14 +769,24 @@ namespace CSBC.Admin.Web
             division.CoDirectorID = 0;
             //cboAD.SelectedValue
             division.CreatedUser = Session["UserName"].ToString();
-            var rep = new DivisionRepository(new CSBCDbContext());
-            if (division.DivisionID == 0)
+            using (var db = new CSBCDbContext())
             {
-                var newDivision = rep.Insert(division);
-                lblDivisionID.Value = newDivision.DivisionID.ToString();
+                try
+                {
+                    var rep = new DivisionRepository(db);
+                    if (division.DivisionID == 0)
+                    {
+                        var newDivision = rep.Insert(division);
+                        lblDivisionID.Value = newDivision.DivisionID.ToString();
+                    }
+                    else
+                        rep.Update(division);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Unable to save" + ex.InnerException);
+                }
             }
-            else
-                rep.Update(division);
             ReassignDivision(DivisionId);
             LoadDivisions();
         }

@@ -13,7 +13,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <div class="form-group">
+                            <div class="form-group form-group-sm">
                                 <label for="txtName" class="control-label">
                                     Name</label>
                                 <asp:TextBox ID="txtName" runat="server" CssClass="form-control "
@@ -24,7 +24,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group ">
+                            <div class="form-group form-group-sm">
                                 <label for="txtMinDate" class="control-label">Min Date:</label>
                                 <asp:TextBox ID="txtMinDate" runat="server" TabIndex="2" TextMode="Date"  CssClass="form-control ">
                                 </asp:TextBox>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group ">
+                            <div class="form-group form-group-sm">
                                 <label for="txtMaxDate" class="control-label">Max Date:</label>
                                 <asp:TextBox ID="txtMaxDate" TabIndex="3" runat="server" TextMode="Date" CssClass="form-control date">
                                 </asp:TextBox>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-4 ">
                             <div class="radio">
-                                <asp:RadioButtonList ID="radGender" runat="server"
+                                <asp:RadioButtonList ID="radGender" runat="server" CssClass="radio-inline"
                                     RepeatColumns="1" RepeatLayout="Flow" TabIndex="4">
                                     <asp:ListItem>Male</asp:ListItem>
                                     <asp:ListItem>Female</asp:ListItem>
@@ -68,7 +68,7 @@
                         <div class="col-md-4 ">
                             <div class="radio">
                                 <asp:RadioButtonList ID="radGender2" runat="server" CssClass="radio-inline"
-                                    RepeatColumns="1" RepeatLayout="Flow" TabIndex="4" TextAlign="Left">
+                                    RepeatColumns="1" RepeatLayout="Flow" TabIndex="4" >
                                     <asp:ListItem>Male</asp:ListItem>
                                     <asp:ListItem>Female</asp:ListItem>
                                 </asp:RadioButtonList>

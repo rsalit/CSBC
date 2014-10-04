@@ -74,12 +74,12 @@
                                                     <h1 class="boxHeading">Next Season Information</h1>
                                                     <div class="boxContent">
                                                         <br />
-                                                       <h2 style="text-align: center; color: red">Winter Season 2014</h2>
+                                                       <h2 style="text-align: center; color: red">Final Winter Season 2014</h2>
                                                         <h2 style="text-align: center; color: red">Sign Ups!!
                    
                                                         </h2>
                                                         <br />
-                                                        <h3>Saturday September 27th</h3>
+                                                        <h3>Saturday October 11th</h3>
                                                         <h3>1PM - 3PM AT Cypress Hall</h3>
 
                                                         <h3>Girls and Boys Ages 6 and up</h3>

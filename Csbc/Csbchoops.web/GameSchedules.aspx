@@ -10,6 +10,8 @@
     <title>Coral Springs Basketball Club</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="content/style.css" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/3.0.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <style type="text/css">
         .style1 {
             width: 201px;
@@ -46,6 +48,8 @@
         }
 
     </script>
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 
 </head>
@@ -87,10 +91,7 @@
                 <asp:Label ID="lblTitle" runat="server" class="boxHeadingcenter">Game Schedules</asp:Label>
             </div>
 
-
-
-
-            <div class="col-xs-12 col-md-6 center-block">
+            <%--  <div class="col-xs-12 col-md-6 center-block">
                 <div class="modal fade"
                     id="loginDialog"
                     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -103,7 +104,7 @@
                                     &times;
                                 </button>
                                 <h4 class="modal-title"
-                                    id="loginLabel">Scores</h4>
+                                    id="loginLabel">Login</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
@@ -140,17 +141,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
             <div class="row">
                 <div class="col-xs-12 col-md-12 center-block">
-                    <!-- Trigger modal form -->
-                      <button class="btn btn-primary btn-lg"
-                        data-toggle="modal"
-                        data-target="#loginDialog">
-                        Scores
-                    </button>
-                    <div class="row-fluid table-bordered">
+
+                    <div class="row-fluid ">
                         <div class="form-group form-inline input-sm col-sm-4">
                             <label id="lblDiv" for="ddlDivisions" class="control-label">Divisions:</label>
                             <asp:DropDownList ID="ddlDivisions" runat="server"
@@ -160,16 +156,15 @@
                             </asp:DropDownList>
                         </div>
 
-                    </div>
-                    <div class="form-group form-inline  input-sm col-sm-4">
-                        <label id="lblTeams" for="cobTeams" class="control-label">Team:</label>
-                        <asp:DropDownList ID="cobTeams" runat="server"
-                            CssClass="form-control dropdown  "
-                            OnSelectedIndexChanged="cobTeams_SelectedIndexChanged1"
-                            AutoPostBack="True">
-                        </asp:DropDownList>
-                    </div>
-                    <div class="well">
+                        <div class="form-group form-inline  input-sm col-sm-4">
+                            <label id="lblTeams" for="cobTeams" class="control-label">Team:</label>
+                            <asp:DropDownList ID="cobTeams" runat="server"
+                                CssClass="form-control dropdown  "
+                                OnSelectedIndexChanged="cobTeams_SelectedIndexChanged1"
+                                AutoPostBack="True">
+                            </asp:DropDownList>
+                        </div>
+
                         <div class="form-group-sm checkbox-inline  col-sm-2">
                             <asp:CheckBox ID="cbAllTeams"
                                 AutoPostBack="true" runat="server"
@@ -179,13 +174,51 @@
                                 Text="All Teams" />
                         </div>
 
-                    </div>
 
+                        <div class="col-sm-2 pull-right">
+                            <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-sm" Text="Login" OnClick="btnLogin_Click1"></asp:Button>
+                            <asp:Label runat="server" ID="lblName" Visible="false" CssClass="label-info"></asp:Label>
+                            <asp:Button runat="server" ID="btnLogout" Visible="false" CssClass="badge" Text="Logout" OnClick="btnLogout_Click" />
+                            <%--data-toggle="modal"
+                                data-target="#loginDialog">--%>
+                        </div>
+                    </div>
+                    <asp:Panel runat="server" ID="loginForm" Visible="false" class="row">
+                        <div class="col-sm-2 col-xs-12 pull-right center-block">
+                            <div class=" text-left text-info">Please sign in</div>
+                            <div class="form-group">
+
+                                <div>
+                                    <asp:TextBox ID="txtUserName" runat="server" placeholder="User Name" CssClass="form-control"></asp:TextBox>
+                                </div>
+
+                            </div>
+                            <div class="form-group center-block">
+
+                                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control">
+                                </asp:TextBox>
+                            </div>
+                            <div class="btn-group btn-group-sm">
+                                <asp:Button class="btn btn-primary btn-sm " type="button" ID="btnSubmit" runat="server"
+                                    Text="Submit" OnClick="btnSubmit_Click1" />
+                                <%-- <asp:Button class="btn btn-primary btn-sm " type="button" ID="btnCancel1" runat="server" 
+                                Text="Cancel"  />--%>
+                            </div>
+                            <br />
+
+                            <div class="container">
+                                <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
+                            </div>
+
+                        </div>
+                    </asp:Panel>
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <div class="panel-title"><h3>Games</h3></div>
+                                    <div class="panel-title">
+                                        <h3>Games</h3>
+                                    </div>
 
                                 </div>
                                 <div style="overflow-y: scroll; max-height: 300px">
@@ -261,7 +294,7 @@
                                                 </ItemTemplate>
                                                 <ItemStyle Width="60px"></ItemStyle>
                                             </asp:TemplateField>
-                                             <asp:TemplateField ItemStyle-Width="60px" ShowHeader="true">
+                                            <asp:TemplateField ItemStyle-Width="60px" ShowHeader="true">
                                                 <HeaderTemplate>Home Score</HeaderTemplate>
                                                 <HeaderStyle Width="60px" />
                                                 <ItemTemplate>
@@ -270,8 +303,11 @@
 
                                                 </ItemTemplate>
                                                 <ItemStyle Width="60px"></ItemStyle>
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="txtHomeScore" runat="server" Text='<%# Item.HomeTeamScore == -1 ? 0 : Item.HomeTeamScore %>' ToolTip='<%# Item.HomeTeamName %>'></asp:TextBox>
+                                                </EditItemTemplate>
                                             </asp:TemplateField>
-                                             <asp:TemplateField ItemStyle-Width="60px" ShowHeader="true">
+                                            <asp:TemplateField ItemStyle-Width="60px" ShowHeader="true">
                                                 <HeaderTemplate>Visitor Score</HeaderTemplate>
                                                 <HeaderStyle Width="60px" />
                                                 <ItemTemplate>
@@ -280,8 +316,21 @@
 
                                                 </ItemTemplate>
                                                 <ItemStyle Width="60px"></ItemStyle>
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="txtVisitingScore" runat="server" Text='<%# Item.VisitingTeamScore == -1 ? 0 : Item.VisitingTeamScore %>' ToolTip='<%# Item.VisitingTeamName %>'></asp:TextBox>
+                                                </EditItemTemplate>
                                             </asp:TemplateField>
-                                            
+                                            <asp:TemplateField HeaderText="" ItemStyle-Width="10px" ShowHeader="false">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="btnEdit1" runat="server"  CssClass="btn btn-sm icon-edit"></asp:LinkButton>
+                                                </ItemTemplate>
+                                                <EditItemTemplate>
+                                                    <asp:LinkButton ID="btnupdate" runat="server"
+                                                        CommandName="Update" Text="Update" CssClass="btn icon-save"></asp:LinkButton>
+                                                    <asp:LinkButton ID="btncancel" runat="server"
+                                                        CommandName="Cancel" Text="Cancel" CssClass="btn icon-cancel"></asp:LinkButton>
+                                                </EditItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
 
                                     </asp:GridView>
@@ -291,8 +340,8 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </form>
+
+        </form>
     </div>
 
     <table style="width: 149px">
@@ -344,7 +393,7 @@
         </tr>
         <tr>
             <td align="center" style="width: 125px">
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" Width="86px" ToolTip="Login" Visible="False" />
+                <asp:Button ID="btnSubmitScore" runat="server" Text="Submit" Width="86px" ToolTip="Login" Visible="False" />
             </td>
         </tr>
     </table>
@@ -358,9 +407,12 @@
 
         <asp:GridView ID="grdStanding">
         </asp:GridView>
-        <script src="../js/jquery-1.10.1.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-</body>
 
+        <script>
+            function ShowLogin() {
+                $("#loginForm").show();
+            }
+        </script>
+</body>
 </html>
 

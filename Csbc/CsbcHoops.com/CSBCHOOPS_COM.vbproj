@@ -214,7 +214,7 @@
     </Compile>
     <Compile Include="About.aspx.vb">
       <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BoardInfoControl.ascx.designer.vb">
       <DependentUpon>BoardInfoControl.ascx</DependentUpon>
@@ -270,7 +270,7 @@
     </Compile>
     <Compile Include="RegTemp.aspx.vb">
       <DependentUpon>RegTemp.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Report.aspx.designer.vb">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -284,7 +284,7 @@
     </Compile>
     <Compile Include="Schedule.aspx.vb">
       <DependentUpon>Schedule.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>

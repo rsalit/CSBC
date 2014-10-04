@@ -25,11 +25,7 @@ namespace Csbchoops.Web
         public int ScheduleNo { get; set; }
         protected void Page_Load(System.Object sender, System.EventArgs e)
         {
-            //Put user code to initialize the page here
-            if (string.IsNullOrEmpty(Session["Module"].ToString()))
-            {
-                Response.Redirect("default.aspx");
-            }
+           
             Session["Module"] = "Games";
             if (Page.IsPostBack == false)
             {
@@ -162,7 +158,7 @@ namespace Csbchoops.Web
                 txtUser.Visible = false;
                 lblPassword.Visible = false;
                 txtPwd.Visible = false;
-                btnSubmit.Visible = false;
+                //btnSubmit.Visible = false;
                 lnkForgot.Visible = false;
                 lblLocation.Visible = false;
                 lblHome.Visible = false;
@@ -962,6 +958,51 @@ namespace Csbchoops.Web
             //entity.Password = txtLoginPassword.Text;
 
             System.Diagnostics.Debugger.Break();
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSubmit_Click1(object sender, EventArgs e)
+        {
+            var rep = new UserRepository(new CSBCDbContext());
+            User user = rep.GetUser(txtUserName.Text, txtPassword.Text);
+            if ((user == null))
+            {
+                lblError.Text = "Invalid user / password";
+                lblError.Visible = true;
+            }
+            else
+            {
+                Session["UserID"] = user.UserID;
+                Session["UserName"] = user.Name;
+                Session["UserType"] = user.UserType;
+
+                lblName.Text = user.UserName;
+                lblName.Visible = true;
+                btnLogout.Visible = true;
+                loginForm.Visible = false;
+                //btnEdit1.Visible = true;
+                //grdSchedule.EditRowStyle = 
+                
+
+
+            }
+        }
+
+        protected void btnLogin_Click1(object sender, EventArgs e)
+        {
+            loginForm.Visible = true;
+            btnLogin.Visible = false;
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            lblName.Visible = false;
+            btnLogout.Visible = false;
+            btnLogin.Visible = true;
         }
 
     }
