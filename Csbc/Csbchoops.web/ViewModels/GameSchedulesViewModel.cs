@@ -33,8 +33,9 @@ namespace Csbchoops.Web.ViewModels
         public int ScheduleNumber { get; set; }
         public int HomeTeamScore { get; set; }
         public int VisitingTeamScore { get; set; }
+        public string GameDescription { get; set; }
 
-        public static List<GameSchedulesViewModel> GetGames(int seasonId)
+        public List<GameSchedulesViewModel> GetGames(int seasonId)
         {
             using (var db = new CSBCDbContext())
             {
@@ -64,12 +65,14 @@ namespace Csbchoops.Web.ViewModels
 
                 List<TeamViewModel> teams;
                 var games = GetTeamNamesFromScheduledGames(db, result);
+                var playoffGames = GetPlayoffGames(seasonId);
+                games.AddRange(playoffGames);
                 return games;
             }
         }
 
 
-        public static List<GameSchedulesViewModel> GetGames(int seasonId, int divisionId)
+        public List<GameSchedulesViewModel> GetGames(int seasonId, int divisionId)
         {
             using (var db = new CSBCDbContext())
             {
@@ -96,10 +99,13 @@ namespace Csbchoops.Web.ViewModels
                               });
                 List<TeamViewModel> teams;
                 var games = GetTeamNamesFromScheduledGames(db, result);
+                var playoffGames = GetPlayoffGames(divisionId);
+                games.AddRange(playoffGames);
+
                 return games;
             }
         }
-        public static List<GameSchedulesViewModel> GetGames(int seasonId, int divisionId, int teamId)
+        public List<GameSchedulesViewModel> GetGames(int seasonId, int divisionId, int teamId)
         {
             using (var db = new CSBCDbContext())
             {
@@ -137,6 +143,8 @@ namespace Csbchoops.Web.ViewModels
                     List<TeamViewModel> teams;
                     //var count = result.Count<GameSchedulesViewModel>();
                     var games = GetTeamNamesFromScheduledGames(db, result);
+                    var playoffGames = GetPlayoffGames(divisionId);
+                    games.AddRange(playoffGames);
                     return games;
                 }
                 else
@@ -180,7 +188,60 @@ namespace Csbchoops.Web.ViewModels
             return games;
 
         }
+        private List<GameSchedulesViewModel> GetPlayoffGames(int divisionId)
+        {
+            using (var db = new CSBCDbContext())
+            {
+                var games = (from g in db.SchedulePlayoffs
+                             from l in db.ScheduleLocations
+                             from d in db.Divisions
+                             where g.DivisionId == divisionId
+                             where g.LocationNumber == l.LocationNumber
+                             where g.DivisionId == d.DivisionID
+                             select new
+                             {
+                                 g.ScheduleNumber,
+                                 d.DivisionID,
+                                 g.GameDate,
+                                 g.GameTime,
+                                 d.Div_Desc,
+                                 g.LocationNumber,
+                                 l.LocationName,
+                                 g.GameNumber,
+                                 g.HomeTeam,
+                                 g.VisitingTeam,
+                                 g.Descr
+                             });
+                var schedGames = new List<GameSchedulesViewModel>();
+                DateTime time;
+                foreach (var g in games)
+                {
+                    var game = new GameSchedulesViewModel();
 
+                    game.ScheduleNumber = g.ScheduleNumber;
+                    //game.DivisionId = g.DivisionID;
+                    game.GameDate = (DateTime)g.GameDate;
+                    if (DateTime.TryParse(g.GameTime, out time))
+                        game.GameTime = time;
+                    //game.D = g.Div_Desc;
+                    //game.LocationNumber = (int)g.LocationNumber;
+                    game.LocationName = g.LocationName;
+                    game.GameNumber = g.GameNumber;
+                    game.HomeTeamName = g.HomeTeam;
+                    game.VisitingTeamName = g.VisitingTeam;
+                    game.GameDescription = g.Descr;
+                    //game.GameType = GameTypes.Playoff;
+                    schedGames.Add(game);
+                }
+
+                if (divisionId != 0)
+                {
+                    schedGames = schedGames
+                    .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ThenBy(g => g.DivisionID).ToList<GameSchedulesViewModel>();
+                }
+                return schedGames;
+            }
+        }
         private static DateTime CombineDateAndTime(DateTime date, DateTime time)
         {
             var dateString = date.ToShortDateString() + " " + time.ToShortTimeString();
@@ -190,7 +251,22 @@ namespace Csbchoops.Web.ViewModels
             return newDate;
         }
 
-        
+        public static void UpdateScore(int gameNo, int divisionId, int homeScore, int visitorScore)
+        {
+            using (var db = new CSBCDbContext())
+            {
+                var rep = new ScheduleGameRepository(db);
+                var game = db.ScheduleGames.FirstOrDefault(g => g.GameNumber == gameNo && g.DivisionId == divisionId);
+                if (game != null)
+                {
+                    game.HomeTeamScore = homeScore;
+                    game.VisitingTeamScore = visitorScore;
+                    rep.Update(game);
+
+                }
+
+            }
+        }
 
     }
 

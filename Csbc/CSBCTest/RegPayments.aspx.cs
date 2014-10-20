@@ -348,7 +348,8 @@ namespace CSBC.Admin.Web
             try
             {
                 //when division is selected master Division ID is changed
-                var players = PlayerVM.GetDivisionPlayers(Master.DivisionId);
+                var vm = new PlayerVM();
+                var players = vm.GetDivisionPlayers(Master.DivisionId);
                 grdPlayers.DataSource = players;
                 grdPlayers.DataBind();
             }

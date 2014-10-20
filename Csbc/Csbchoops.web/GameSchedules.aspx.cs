@@ -25,7 +25,7 @@ namespace Csbchoops.Web
         public int ScheduleNo { get; set; }
         protected void Page_Load(System.Object sender, System.EventArgs e)
         {
-           
+
             Session["Module"] = "Games";
             if (Page.IsPostBack == false)
             {
@@ -46,12 +46,14 @@ namespace Csbchoops.Web
                 {
                     //LoadSchedule(DivisionId, 0);
                 }
+
             }
             else
             {
                 if (DivisionId == 0) { DivisionId = 0; }
                 if (ScheduleNo == 0) { ScheduleNo = 0; }
             }
+            grdSchedule.Columns[9].Visible = lblName.Visible;
         }
 
         private void GetSeason()
@@ -70,7 +72,7 @@ namespace Csbchoops.Web
             }
             catch (Exception ex)
             {
-                lblError.Text = "GetSeason:" + ex.Message;
+                //lblError.Text = "GetSeason:" + ex.Message;
             }
         }
 
@@ -95,7 +97,7 @@ namespace Csbchoops.Web
             }
             catch (Exception ex)
             {
-                lblError.Text = "GetDivisions:" + ex.Message;
+                //lblError.Text = "GetDivisions:" + ex.Message;
             }
         }
 
@@ -117,65 +119,54 @@ namespace Csbchoops.Web
             }
             catch (Exception ex)
             {
-                lblError.Text = "GetTeams:" + ex.Message;
+                //lblError.Text = "GetTeams:" + ex.Message;
             }
         }
 
         private void LoadSchedule(int divisionId, int teamId)
         {
-            try
+            if (panelGames.Visible)
             {
-
-                var games = new List<GameSchedulesViewModel>();
-                if (teamId == 0)
+                try
                 {
-                    games = GameSchedulesViewModel.GetGames(Convert.ToInt32(Session["SeasonID"]), divisionId);
+                    if (cbAllTeams.Checked)
+                        teamId = 0;
+                    var vm = new GameSchedulesViewModel();
+                    var games = new List<GameSchedulesViewModel>();
+                    if (teamId == 0)
+                    {
+                        games = vm.GetGames(Convert.ToInt32(Session["SeasonID"]), divisionId);
+                    }
+                    else
+                    {
+                        games = vm.GetGames(Convert.ToInt32(Session["SeasonID"]), divisionId, teamId);
+                    }
+
+                    var grid = grdSchedule;
+                    grid.DataSource = games.OrderBy(g => g.GameDate);
+                    grid.DataBind();
+                    if (divisionId > 0)
+                    {
+                        //lblTitle.Text = games..FirdivisionDescription + " Schedule";
+                    }
+                    //if (iTeam > 0)
+                    //{
+                    //    lblTitle.Text = divisionDescription + " Team " + sTeamDesc + " Schedule";
+                    //}
+                    Session["ScheduleNo"] = divisionId;
+                    //Session["ScheduleDesc"] = divisionDescription;
+                    //Session["TeamName"] = sTeamDesc;
+                    Session["ReportName"] = "Schedules";
+                    cobTeams.Visible = true;
+                    grdSchedule.Columns[9].Visible = ((Session["Editing"] != null & Session["Editing"] == "All") ||
+                        (Session["User"] != null & CheckAD(Convert.ToInt32(ddlDivisions.SelectedValue), (User)Session["User"]))
+                        );
+                    //btnSubmit.Visible = false;
                 }
-                else
+                catch (Exception ex)
                 {
-                    games = GameSchedulesViewModel.GetGames(Convert.ToInt32(Session["SeasonID"]), divisionId, teamId);
+                    //lblError.Text = "LoadSchedule:" + ex.Message;
                 }
-
-                var grid = grdSchedule;
-                grid.DataSource = games.OrderBy(g => g.GameDate);
-                grid.DataBind();
-                if (divisionId > 0)
-                {
-                    //lblTitle.Text = games..FirdivisionDescription + " Schedule";
-                }
-                //if (iTeam > 0)
-                //{
-                //    lblTitle.Text = divisionDescription + " Team " + sTeamDesc + " Schedule";
-                //}
-                Session["ScheduleNo"] = divisionId;
-                //Session["ScheduleDesc"] = divisionDescription;
-                //Session["TeamName"] = sTeamDesc;
-                Session["ReportName"] = "Schedules";
-                cobTeams.Visible = true;
-
-
-                lblUsername.Visible = false;
-                txtUser.Visible = false;
-                lblPassword.Visible = false;
-                txtPwd.Visible = false;
-                //btnSubmit.Visible = false;
-                lnkForgot.Visible = false;
-                lblLocation.Visible = false;
-                lblHome.Visible = false;
-                lblDate.Visible = false;
-                lblVisitor.Visible = false;
-                btnUpdate.Visible = false;
-                txtVScores.Visible = false;
-                txtHScores.Visible = false;
-                //imgStandings.Visible = True
-
-                lblError.Text = "";
-
-
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "LoadSchedule:" + ex.Message;
             }
 
         }
@@ -209,73 +200,22 @@ namespace Csbchoops.Web
                 team = Convert.ToInt32(cobTeams.Items[0].Value);
             }
             LoadSchedule(divisionId, team);
-
+            LoadStandings(divisionId);
         }
 
 
-        private void LoadStandings(string sDesc, int iDiv)
+        private void LoadStandings(int iDiv)
         {
-            //Season.clsGames oGames = new Season.clsGames();
-            //DataTable rsData = default(DataTable);
-            //try
-            //{
-            //    rsData = oGames.GetStanding(Session["CompanyID"], iDiv);
-            //    //CreateXML(rsData)
-            //    var _with4 = grdStanding;
-            //    _with4.DataSource = rsData;
-            //    _with4.DataBind();
-            //With .DisplayLayout.Bands(0).Columns
-            //    .FromKey("TeamNo").Hidden = True
-            //    .FromKey("ScheduleName").Hidden = True
-            //    .FromKey("DivNo").Hidden = True
-            //    .FromKey("TeamName").Hidden = True
-            //    .FromKey("TieBreaker").Hidden = True
-            //    .FromKey("Team").Width = 130
-            //    .FromKey("Team").Header.Fixed = True
-            //    .FromKey("Won").CellStyle.HorizontalAlign = HorizontalAlign.Center
-            //    .FromKey("won").Width = 40
-            //    .FromKey("won").Header.Fixed = True
-            //    .FromKey("Lost").CellStyle.HorizontalAlign = HorizontalAlign.Center
-            //    .FromKey("Lost").Width = 40
-            //    .FromKey("Lost").Header.Fixed = True
-            //    .FromKey("PCT").CellStyle.HorizontalAlign = HorizontalAlign.Center
-            //    .FromKey("PCT").Width = 60
-            //    .FromKey("PCT").Header.Fixed = True
-            //    .FromKey("Streak").CellStyle.HorizontalAlign = HorizontalAlign.Center
-            //    .FromKey("Streak").Width = 60
-            //    .FromKey("Streak").Header.Fixed = True
-            //    .FromKey("PF").CellStyle.HorizontalAlign = HorizontalAlign.Center
-            //    .FromKey("PF").Width = 60
-            //    .FromKey("PF").Header.Fixed = True
-            //    .FromKey("PA").CellStyle.HorizontalAlign = HorizontalAlign.Center
-            //    .FromKey("PA").Width = 60
-            //    .FromKey("PA").Header.Fixed = True
-            //    .FromKey("GB").CellStyle.HorizontalAlign = HorizontalAlign.Center
-            //    .FromKey("GB").Header.Fixed = True
-            //    .FromKey("GB").Width = 100
-            //End With
-            //    if (iDiv > 0)
-            //    {
-            //        lblTitle.Text = sDesc + " Standing";
-            //    }
-            //    else
-            //    {
-            //        lblTitle.Text = "Standing";
-            //    }
-            //    Session["ReportName"] = "Standings";
-            //    Session["ScheduleDesc"] = sDesc;
-            //    Session["ScheduleNo"] = iDiv;
-            //    lblError.Text = " ";
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblError.Text = "LoadStandings:" + ex.Message;
-            //}
-            //finally
-            //{
-            //    oGames = null;
-            //}
-            //grdStanding.Columns(7).Header.Title = "PF=>All games points scored (by team), PA=All Games point scored (by opponents), GB=Games Behind the division leader"
+            if (panelStandings.Visible)
+            {
+                var vm = new ScheduleStandingsViewModel();
+                var standings = vm.GetStandings(iDiv);
+
+                grdStandings.DataSource = standings;
+                //grdStandings.DataValueField = "DivisionID";
+                //grdStandings.DataTextField = "Div_Desc";
+                grdStandings.DataBind();
+            }
         }
 
         private string AccessType(long Usercode, string sScreen)
@@ -300,82 +240,6 @@ namespace Csbchoops.Web
             //return functionReturnValue;
             return "R";
         }
-
-        private void GetUser()
-        {
-            //Security.ClsUsers oUser = new Security.ClsUsers();
-            //try
-            //{
-            //    oUser.GetUser(txtUser.Text, txtPwd.Text);
-            //    //I NEED TO EVALUATE FOR NOTHING COMING BACK
-            //    Session.Add("USERCODE", oUser.UserID);
-            //    Session.Add("USERNAME", oUser.UserName);
-            //    Session.Add("HouseID", oUser.HouseID);
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblError.Text = "GetUser:" + ex.Message;
-            //    return;
-            //}
-            //finally
-            //{
-            //    oUser = null;
-            //}
-            //if (Session["USERCODE"] > 0)
-            //{
-            //    ValidateAccess();
-            //    //Call CheckForStats()
-            //}
-            //else
-            //{
-            //    lblError.Text = "Invalid Username/Password";
-            //}
-        }
-
-        //Private Function CheckEncryption(ByVal susername As String) As Boolean
-        //Dim rdr As SqlClient.SqlDataReader
-        //SqlCn.Open()
-        //Sql = "EXEC CheckEncryption @UserName = " & Quotes(txtUser.Value)
-        //Dim selectCMD As SqlCommand = New SqlCommand(Sql, SqlCn)
-        //rdr = selectCMD.ExecuteReader
-        //CheckEncryption = False
-        //Try
-        //    While rdr.Read()
-        //        CheckEncryption = rdr.Item("PWD")
-        //    End While
-        //    rdr.Close()
-        //Catch ex As Exception
-        //    Response.Write(ex.Message)
-        //    Response.Write(Sql)
-        //    Response.End()
-        //Finally
-        //    If SqlCn.State = ConnectionState.Open Then
-        //        SqlCn.Close()
-        //    End If
-        //End Try
-
-
-        //End Function
-
-        //Private Sub UpdatePWD(ByVal sUsername As String, ByVal PWD As String)
-        //            Dim rdr As SqlClient.SqlDataReader
-        //            SqlCn.Open()
-        //            SQL = "EXEC CheckLoginNE @UserName = " & Quotes(sUsername) & ", @Pword = " & Quo(PWD) & ", @PassWord = " & Quo(HashPassword(PWD))
-        //            Dim selectCMD As SqlCommand = New SqlCommand(SQL, SqlCn)
-        //            Try
-        //                selectCMD.ExecuteNonQuery()
-        //            Catch ex As Exception
-        //                Response.Write(ex.Message)
-        //                Response.Write(SQL)
-        //                Response.End()
-        //            Finally
-        //                If SqlCn.State = ConnectionState.Open Then
-        //                    SqlCn.Close()
-        //                End If
-        //            End Try
-        //End Sub
-
-
 
 
         private void ValidateAccess()
@@ -453,31 +317,24 @@ namespace Csbchoops.Web
 
         //End Sub
 
-        private int CheckAD()
+        private bool CheckAD(int divisionId, User user)
         {
-            int functionReturnValue = 0;
-            //functionReturnValue = 0;
-            //Season.ClsDivisions oDivisions = new Season.ClsDivisions();
-            //if (Session["HouseID"] > 0)
-            //{
-            //    try
-            //    {
-            //        functionReturnValue = oDivisions.DivisionAD(Session["CompanyID"], Session["SeasonID"], Session["ScheduleNoAD"], txtUser.Text, txtPwd.Text);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        lblError.Text = "CheckAD:" + ex.Message;
-            //    }
-            //    finally
-            //    {
-            //        oDivisions = null;
-            //    }
-
-            //}
-            //else
-            //{
-            //    return functionReturnValue;
-            //}
+            bool functionReturnValue = false;
+            using (var db = new CSBCDbContext())
+            {
+                var divisionRepo = new DivisionRepository(db);
+                var division = divisionRepo.GetById(divisionId);
+                if (division.DirectorID != 0)
+                {
+                    if (user.HouseID != 0)
+                    {
+                        var householdMembers = db.Set<Person>().Where(p => p.HouseID == user.HouseID);
+                        functionReturnValue = householdMembers.Any(h => h.PeopleID == division.DirectorID);
+                        lblName.Text = user.Name;
+                        lblName.Visible = true;
+                    }
+                }
+            }
             return functionReturnValue;
 
         }
@@ -506,13 +363,13 @@ namespace Csbchoops.Web
                 oSmtp.Credentials = new System.Net.NetworkCredential("registrar@csbchoops.net", "0317");
                 //oSmtp.UseDefaultCredentials = True
                 oSmtp.Send(oEmail);
-                lblError.Text = "Email sent!";
+                //lblError.Text = "Email sent!";
                 oEmail.Dispose();
                 oSmtp = null;
             }
             catch (Exception ex)
             {
-                lblError.Text = "Unable to send mail!  " + ex.Message;
+                //lblError.Text = "Unable to send mail!  " + ex.Message;
             }
         }
 
@@ -536,106 +393,6 @@ namespace Csbchoops.Web
             {
                 functionReturnValue = false;
             }
-            return functionReturnValue;
-        }
-
-        protected void btnSubmit_Click(object sender, System.EventArgs e)
-        {
-            //If CheckEncryption(txtUser.Value) = False Then UpdatePWD(txtUser.Value, txtPassword.Value)
-            GetUser();
-            //Session["USERACCESS"] = AccessType(Session["USERCODE"])
-            //txtUser.Value = Session["USERNAME"]
-
-
-        }
-
-        private void CheckUser()
-        {
-            //Security.ClsUsers oSecurity = new Security.ClsUsers();
-            //try
-            //{
-            //    var _with5 = oSecurity;
-            //    _with5.GetUser(txtUser.Text, txtPwd.Text);
-            //    //Session["UserName"] = .UserName
-            //    //Session["SeasonDesc"] = .SeasonDesc
-            //    Session["Usertype"] = _with5.Usertype;
-            //    Session["UserID"] = _with5.UserID;
-            //    Session["HouseID"] = _with5.HouseID;
-            //    Session["CompanyID"] = _with5.CompanyID;
-            //    //Session["CompanyName"] = .CompanyName
-            //    //Session["ImageName"] = .ImageName
-            //    //Session["TimeZone"] = .TimeZone
-            //    Session["SeasoniD"] = _with5.SeasonID;
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblError.Text = "Invalid Username/Password";
-            //}
-            //finally
-            //{
-            //    oSecurity = null;
-            //}
-        }
-
-        protected void btnUpdate_Click(object sender, System.EventArgs e)
-        {
-            //lblLocation.Visible = false;
-            //lblHome.Visible = false;
-            //lblDate.Visible = false;
-            //lblVisitor.Visible = false;
-            //btnUpdate.Visible = false;
-            //txtVScores.Visible = false;
-            //txtHScores.Visible = false;
-            ////imgStandings.Visible = True
-
-            //if ((!Information.IsNumeric(txtHScores.Text) & txtHScores.Text > " ") | (!Information.IsNumeric(txtVScores.Text) & txtVScores.Text > " "))
-            //{
-            //    Response.Write("Invalid value entered");
-            //    Response.End();
-            //    return;
-            //}
-            //UpdateScores();
-            //LoadSchedule(Session["ScheduleDesc"], Session["ScheduleNo"], cobTeams.SelectedItem.Text, cobTeams.SelectedItem.Value);
-
-        }
-
-        private void UpdateScores()
-        {
-            //Season.clsGames oGames = new Season.clsGames();
-            //try
-            //{
-            //    if (Information.IsNumeric(txtHScores.Text) & Information.IsNumeric(txtVScores.Text))
-            //    {
-            //        oGames.UpdateGameScores(Session["ScheduleNo"], Session["GameNumber"], Session["GameType"], txtHScores.Text, txtVScores.Text);
-            //    }
-            //    else
-            //    {
-            //        oGames.UpdateGameScores(Session["ScheduleNo"], Session["GameNumber"], Session["GameType"]);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblError.Text = "UpdateScores:" + ex.Message;
-            //}
-            //finally
-            //{
-            //    oGames = null;
-            //}
-        }
-
-
-
-        private bool KeepStats()
-        {
-            bool functionReturnValue = false;
-            //if (Session["DivStats"] == true)
-            //{
-            //    functionReturnValue = true;
-            //}
-            //else
-            //{
-            //    functionReturnValue = false;
-            //}
             return functionReturnValue;
         }
 
@@ -702,16 +459,11 @@ namespace Csbchoops.Web
             //Security.ClsUsers oUser = new Security.ClsUsers();
             try
             {
-                if (string.IsNullOrEmpty(txtUser.Text))
-                {
-                    lblError.Text = "ERROR - Missing User";
-                    return;
-                }
                 //oUser.GetEmail(Session["CompanyID"], txtUser.Text);
                 //Email = oUser.Email;
                 if (!IsEmail(Email))
                 {
-                    lblError.Text = "Invalid/missing Email";
+                    // lblError.Text = "Invalid/missing Email";
                     return;
                 }
                 //pwd = oUser.PWord;
@@ -721,12 +473,12 @@ namespace Csbchoops.Web
                 }
                 //else
                 {
-                    lblError.Text = "Invalid/missing Username";
+                    //lblError.Text = "Invalid/missing Username";
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = "lnkForgot:" + ex.Message;
+                //lblError.Text = "lnkForgot:" + ex.Message;
             }
 
         }
@@ -815,112 +567,6 @@ namespace Csbchoops.Web
 
 
 
-        protected void grdGames_ItemCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName != "select")
-                return;
-
-            //Session["GameNumber"] = e.Item.Cells(0).Value.ToString();
-            //Session["GameType"] = e.Item.Cells(1).Value.ToString();
-            //Session["HomeTeam"] = e.Item.Cells(6).Value.ToString();
-            //Session["VisitingTeam"] = e.Item.Cells(7).Value.ToString();
-
-            if (KeepStats())
-            {
-                //transfer to stats
-                Response.Redirect("GamesStats.aspx");
-                return;
-            }
-
-            //if (Session["ScheduleNoAD"] != e.Item.Cells(2).Value.ToString())
-            //{
-            //    Session["ScheduleNoAD"] = e.Item.Cells(2).Value.ToString();
-            //    ValidateAccess();
-            //    if (lblError.Text > "")
-            //        return;
-            //}
-            //Session["ScheduleNoAD"] = e.Item.Cells(2).Value.ToString();
-
-            //Season.clsGames oGames = new Season.clsGames();
-            //try
-            //{
-            //    oGames.GetGames(Session["ScheduleNoAD"], Session["GameNumber"], Session["GameType"]);
-            //    //I NEED TO EVALUATE FOR NOTHING COMING BACK
-            //    lblDate.Text = oGames.GameDate + " " + oGames.GameTime;
-            //    lblLocation.Text = oGames.Location;
-            //    lblHome.Text = oGames.Home;
-            //    lblVisitor.Text = oGames.Visitor;
-            //    if (!Information.IsDBNull(oGames.HomeTeamScore))
-            //    {
-            //        txtHScores.Text = oGames.HomeTeamScore;
-            //    }
-            //    else
-            //    {
-            //        txtHScores.Text = "";
-            //    }
-            //    if (!Information.IsDBNull(oGames.VisitingTeamScore))
-            //    {
-            //        txtVScores.Text = oGames.VisitingTeamScore;
-            //    }
-            //    else
-            //    {
-            //        txtVScores.Text = "";
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblError.Text = "grdGames:" + ex.Message;
-            //    return;
-            //}
-            //finally
-            //{
-            //    oGames = null;
-            //}
-            //lblError.Text = "";
-            ////imgStandings.Visible = False
-            //if (string.IsNullOrEmpty(Session["USERNAME"]) & string.IsNullOrEmpty(Session["Admin"]))
-            //{
-            //    lblUsername.Visible = true;
-            //    txtUser.Visible = true;
-            //    lblPassword.Visible = true;
-            //    txtPwd.Visible = true;
-            //    btnSubmit.Visible = true;
-            //    lnkForgot.Visible = true;
-            //    //imgStandings.Visible = False
-
-            //    lblDate.Visible = false;
-            //    lblLocation.Visible = false;
-            //    lblVisitor.Visible = false;
-            //    lblHome.Visible = false;
-            //    txtVScores.Visible = false;
-            //    txtHScores.Visible = false;
-            //    btnUpdate.Visible = false;
-
-            //}
-            //else
-            //{
-            //    lblUsername.Visible = false;
-            //    txtUser.Visible = false;
-            //    lblPassword.Visible = false;
-            //    txtPwd.Visible = false;
-            //    btnSubmit.Visible = false;
-            //    lnkForgot.Visible = false;
-            //    lblDate.Visible = true;
-            //    lblLocation.Visible = true;
-            //    lblVisitor.Visible = true;
-            //    lblHome.Visible = true;
-            //    txtVScores.Visible = true;
-            //    txtHScores.Visible = true;
-            //    btnUpdate.Visible = true;
-            //    //Call CheckForStats()
-
-            //}
-            //End Sub
-            //    If e.CommandName = "Select" Then
-
-            //        lblError.Text = "Bingo"
-            //    End If
-        }
 
         protected void grdSchedule_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -967,29 +613,66 @@ namespace Csbchoops.Web
 
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
-            var rep = new UserRepository(new CSBCDbContext());
-            User user = rep.GetUser(txtUserName.Text, txtPassword.Text);
-            if ((user == null))
+            GetUserAccess();
+        }
+
+        private void GetUserAccess()
+        {
+            var msg = "Invalid use name / password combination";
+            var giveAccess = false;
+            using (var db = new CSBCDbContext())
             {
-                lblError.Text = "Invalid user / password";
-                lblError.Visible = true;
+                var rep = new UserRepository(db);
+                User user = rep.GetUser(txtUserName.Text, txtPassword.Text);
+                if (user != null & user.HouseID != 0)
+                {
+                    if (user.PassWord.ToUpper() == txtPassword.Text.ToUpper())
+                    {
+                        var repoRole = new RoleRepository(db);
+                        var accessTypes = repoRole.GetRoles(user.UserID);
+                        Session["User"] = user;
+                        if (accessTypes.Any(r => r.ScreenName.ToUpper() == "SCORES"))
+                        {
+
+                            giveAccess = true;
+                            Session["Editing"] = "All";
+
+                        }
+                        else
+                        {
+                            //check to see if they are AD
+                            var divisionId = Convert.ToInt32(ddlDivisions.SelectedValue);
+                            giveAccess = CheckAD(divisionId, user);
+                            if (!giveAccess)
+                            {
+                                msg = "Use does not have right to edit scores";
+                            }
+                        }
+                        if (giveAccess)
+                        {
+                            //btnEdit1.Visible = true;
+                            grdSchedule.Columns[9].Visible = true;   
+                        }
+                        Session["UserID"] = user.UserID;
+                        Session["UserName"] = user.Name;
+                        Session["UserType"] = user.UserType;
+
+                        lblName.Text = user.Name;
+                        lblName.Visible = true;
+                        btnLogout.Visible = true;
+                        loginForm.Visible = false;
+                        return;
+
+                    }
+                    else
+                    {
+                        msg = "Incorrect password";
+                    }
+
+                }
             }
-            else
-            {
-                Session["UserID"] = user.UserID;
-                Session["UserName"] = user.Name;
-                Session["UserType"] = user.UserType;
-
-                lblName.Text = user.UserName;
-                lblName.Visible = true;
-                btnLogout.Visible = true;
-                loginForm.Visible = false;
-                //btnEdit1.Visible = true;
-                //grdSchedule.EditRowStyle = 
-                
-
-
-            }
+            labelLoginError.Text = msg;
+            labelLoginError.Visible = true;
         }
 
         protected void btnLogin_Click1(object sender, EventArgs e)
@@ -1003,6 +686,69 @@ namespace Csbchoops.Web
             lblName.Visible = false;
             btnLogout.Visible = false;
             btnLogin.Visible = true;
+        }
+
+        protected void grdSchedule_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            if (lblName.Visible)
+            {
+                grdSchedule.EditIndex = e.NewEditIndex;
+                LoadSchedule(Convert.ToInt32(ddlDivisions.SelectedValue), Convert.ToInt32(cobTeams.SelectedValue));
+            }
+            else
+            {
+                //lblError.Visible = true;
+                //lblError.Text = "Please log in to edit";
+            }
+        }
+
+        protected void grdSchedule_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            var index = e.RowIndex;
+            var gameLabel = grdSchedule.Rows[index].FindControl("lblGameNumber");
+            var gameNumber = Convert.ToInt32((gameLabel as Label).Text);
+            var division = Convert.ToInt32(ddlDivisions.SelectedValue);
+            var homeTeam = (TextBox)grdSchedule.Rows[index].FindControl("txtHomeScore");
+            var homeScore = Convert.ToInt32((homeTeam as TextBox).Text);
+            var visitingTeam = (TextBox)grdSchedule.Rows[index].FindControl("txtVisitingScore");
+            var visitingScore = Convert.ToInt32((visitingTeam as TextBox).Text);
+
+            GameSchedulesViewModel.UpdateScore(gameNumber, division, homeScore, visitingScore);
+
+            Utilities.MsgBox(this, "Record Saved");
+            grdSchedule.EditIndex = -1;
+            LoadSchedule(Convert.ToInt32(ddlDivisions.SelectedValue), Convert.ToInt32(cobTeams.SelectedValue));
+
+        }
+
+        protected void linkPanelSelection_Click(object sender, EventArgs e)
+        {
+            if (linkPanelSelection.Text == "Show Standings")
+            {
+                linkPanelSelection.Text = "ShowGames";
+                panelStandings.Visible = true;
+                LoadStandings(Convert.ToInt32(ddlDivisions.SelectedValue));
+                panelGames.Visible = false;
+            }
+            else
+            {
+                panelGames.Visible = true;
+                panelStandings.Visible = false;
+                LoadSchedule(Convert.ToInt32(ddlDivisions.SelectedValue), Convert.ToInt32(cobTeams.SelectedValue));
+                linkPanelSelection.Text = "Show Standings";
+
+            }
+        }
+
+        protected void btnCancel1_Click(object sender, EventArgs e)
+        {
+            loginForm.Visible = false;
+        }
+
+        protected void grdSchedule_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            var index = e.RowIndex;
+            grdSchedule.EditIndex = -1;
         }
 
     }

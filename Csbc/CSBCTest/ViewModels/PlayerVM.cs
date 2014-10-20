@@ -47,7 +47,7 @@ namespace CSBC.Admin.Web.ViewModels
             }
 
         }
-        public static List<SeasonPlayer> GetDivisionPlayers(int divisionId)
+        public List<SeasonPlayer> GetDivisionPlayers(int divisionId)
         {
             using (var db = new CSBCDbContext())
             {
@@ -55,8 +55,8 @@ namespace CSBC.Admin.Web.ViewModels
                 var players = rep.GetDivisionPlayers(divisionId);
                 return players.ToList();
             }
-
         }
+
         private static SeasonPlayer ConvertDataTableToSeasonPlayer(DataRow row)
         {
             var player = new SeasonPlayer();

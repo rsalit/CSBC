@@ -9,24 +9,25 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Coral Springs Basketball Club</title>
-    
+
     <link href="Content/style.css" rel="stylesheet" />
     <style type="text/css">
         .centerlow {
             background-color: #191818;
             color: #f6f2f2;
-            text-align:center;
+            text-align: center;
             font-size: 1.3em;
-            font-weight:500;
-            padding-left:12px;
-            padding-right:12px;
-            padding-top:10px;
-            padding-bottom:10px;
+            font-weight: 500;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
-        .centerlow a {
-            font-size: 1em;
-            font-weight:400;
-        }
+
+            .centerlow a {
+                font-size: 1em;
+                font-weight: 400;
+            }
     </style>
 </head>
 <body>
@@ -54,7 +55,7 @@
                             <tr>
                                 <td valign="top">
                                     <uc1:MainMenu runat="server" ID="MainMenu" />
-                                    
+
                                 </td>
                             </tr>
                         </table>
@@ -74,18 +75,22 @@
                                                     <h1 class="boxHeading">Next Season Information</h1>
                                                     <div class="boxContent">
                                                         <br />
-                                                       <h2 style="text-align: center; color: red">Final Winter Season 2014</h2>
+                                                        <h2 style="text-align: center; color: red">Final Winter Season 2014</h2>
                                                         <h2 style="text-align: center; color: red">Sign Ups!!
                    
                                                         </h2>
                                                         <br />
-                                                        <h3>Saturday October 11th</h3>
-                                                        <h3>1PM - 3PM AT Cypress Hall</h3>
+                                                        <h3>Monday October 20th</h3>
+                                                        <h3>6PM - 7PM</h3>
+                                                        <h3>at the Coral Springs Gymnasium</h3>
 
                                                         <h3>Girls and Boys Ages 6 and up</h3>
                                                         <h3>HS Girls and Boys</h3>
                                                         <h4>Season runs from approx. November - February</h4>
-                                                        <br />
+
+                                                        <hr />
+                                                        <h3 style="text-align: center; color: red">Oct 20th Board Meeting</h3>
+                                                        <h3>@7PM CS Gym</h3>
                                                         <%--<p style="text-align: center">On line registration is not currently available. </p>--%>
                                                         <%--<h2 style="text-align: center"><a href="pdf/CSTryoutsFall2014.pdf" target="_blank">Fall Tryout Info</a></h2>
 
@@ -94,20 +99,20 @@
                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="Chart">
                                                             <tr>
                                                                 <td>
-                                                                    <asp:HyperLink ID="Link1" runat="server" Target="_blank" visible="false" Width="100%">[Link1]</asp:HyperLink></td>
+                                                                    <asp:HyperLink ID="Link1" runat="server" Target="_blank" Visible="false" Width="100%">[Link1]</asp:HyperLink></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <asp:HyperLink ID="Link2" runat="server" Target="_blank" visible="false" Width="100%">[Link2]</asp:HyperLink></td>
+                                                                    <asp:HyperLink ID="Link2" runat="server" Target="_blank" Visible="false" Width="100%">[Link2]</asp:HyperLink></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <asp:HyperLink ID="Link3" runat="server" Target="_blank" visible="false" Width="100%">[Link3]</asp:HyperLink></td>
+                                                                    <asp:HyperLink ID="Link3" runat="server" Target="_blank" Visible="false" Width="100%">[Link3]</asp:HyperLink></td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                 </div>
-                                               <%-- <div class="box">
+                                                <%-- <div class="box">
                                                     <a href="calendar.aspx" target="_blank" class="boxHeading">Up coming events!
                                                     </a>
                                                     <div class="boxContent">
@@ -144,11 +149,14 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <p class="centerlow">To all members we are sad to 
-inform everyone that Manny Rosa passed away on 8/27/14. <br/>
-Our most deepest sympathy goes out to the family<br /></p>
-                                                        
-                                                       <%-- <span class="reportLink"><a href="Reports/t2.pdf" target="_blank">Trainee 2 Coed</a></span>
+                                                        <p class="centerlow">
+                                                            To all members we are sad to 
+inform everyone that Manny Rosa passed away on 8/27/14.
+                                                            <br />
+                                                            Our most deepest sympathy goes out to the family<br />
+                                                        </p>
+
+                                                        <%-- <span class="reportLink"><a href="Reports/t2.pdf" target="_blank">Trainee 2 Coed</a></span>
                                                         <span class="reportLink"><a href="Reports/t3.pdf" target="_blank">Trainee 3 Coed</a></span>
                                                         <span class="reportLink"><a href="Reports/t4.pdf" target="_blank">Trainee 4 Coed</a></span>
                                                         <span class="reportLink"><a href="Reports/si.pdf" target="_blank">SI Boys</a></span>
@@ -164,10 +172,12 @@ Our most deepest sympathy goes out to the family<br /></p>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <asp:HyperLink ID="Link4" runat="server" Target="_blank" visible="false" Width="100%">[Link4]</asp:HyperLink> <asp:HyperLink ID="Link5" runat="server" Target="_blank" visible="false" Width="100%">[Link5]</asp:HyperLink><asp:HyperLink ID="Link6" runat="server" Target="_blank" visible="false" Width="100%">[Link6]</asp:HyperLink><asp:HyperLink ID="Link7" runat="server" Target="_blank" visible="false" Width="100%">[Link7]</asp:HyperLink><asp:HyperLink ID="Link8" runat="server" Target="_blank" visible="false" Width="100%">[Link8]</asp:HyperLink><asp:HyperLink ID="Link9" runat="server" Target="_blank" visible="false" Width="100%">[Link9]</asp:HyperLink> <asp:HyperLink ID="Link10" runat="server" Target="_blank" visible="false" Width="100%">[Link10]</asp:HyperLink></td>
+                                                        <asp:HyperLink ID="Link4" runat="server" Target="_blank" Visible="false" Width="100%">[Link4]</asp:HyperLink>
+                                                        <asp:HyperLink ID="Link5" runat="server" Target="_blank" Visible="false" Width="100%">[Link5]</asp:HyperLink><asp:HyperLink ID="Link6" runat="server" Target="_blank" Visible="false" Width="100%">[Link6]</asp:HyperLink><asp:HyperLink ID="Link7" runat="server" Target="_blank" Visible="false" Width="100%">[Link7]</asp:HyperLink><asp:HyperLink ID="Link8" runat="server" Target="_blank" Visible="false" Width="100%">[Link8]</asp:HyperLink><asp:HyperLink ID="Link9" runat="server" Target="_blank" Visible="false" Width="100%">[Link9]</asp:HyperLink>
+                                                        <asp:HyperLink ID="Link10" runat="server" Target="_blank" Visible="false" Width="100%">[Link10]</asp:HyperLink></td>
                                                 </tr>
-                                                
-                                               
+
+
                                             </table>
                                         </div>
                                     </div>
@@ -218,7 +228,7 @@ Our most deepest sympathy goes out to the family<br /></p>
                                                         <param name="AllowFullScreen" value="false" />
                                                         <embed src="/Movies/Sponsors.swf" quality="high" width="920" height="80" name="Sponsors" align="left"
                                                             type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
-		</embed>
+                                                        </embed>
                                                     </object>
                                                 </table>
                                             </div>

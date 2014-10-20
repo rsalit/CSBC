@@ -24,111 +24,121 @@ namespace CSBC.Admin.Web.ViewModels
         public int LocationNumber { get; set; }
         public string LocationName { get; set; }
         public int GameNumber { get; set; }
-
+        public int HomeTeamNo { get; set; }
+        public int VisitorTeamNo { get; set; }
         public string HomeTeam { get; set; }
         public string VisitorTeam { get; set; }
 
-        public IQueryable<ScheduleGamesVM> GetGames(int seasonId, int divisionId)
-        {
-            using (var db = new CSBCDbContext())
-            {
-                var rep = new ScheduleGameRepository(db);
-                var games = (from g in db.ScheduleGames
-                             join l in db.ScheduleLocations on g.LocationNumber equals l.LocationNumber
-                             join sd in db.ScheduleDivisions on g.ScheduleNumber equals sd.ScheduleNumber
-                             join d in db.Divisions on sd.ScheduleName equals d.Div_Desc
-                             where g.ScheduleNumber == divisionId
-                             where d.SeasonID == seasonId
-                             select new 
-                             {
-                                 g.ScheduleNumber,
-                                 d.DivisionID,
-                                 g.GameDate,
-                                 g.GameTime,
-                                 d.Div_Desc,
-                                 g.LocationNumber,
-                                 l.LocationName,
-                                 g.GameNumber,
-                                 g.HomeTeamNumber,
-                                 g.VisitingTeamNumber,
-								 HomeTeam = db.Set<Team>().FirstOrDefault(t => t.TeamNumber == g.HomeTeamNumber.ToString()).TeamName,
-                                 VisitorTeam = db.Set<Team>().FirstOrDefault(t => t.TeamNumber == g.VisitingTeamNumber.ToString()).TeamName
-                             }) as IQueryable<ScheduleGamesVM>;
-                foreach (var g in games)
-                {
-                    g.GameType = GameTypes.Regular;
-                }
-                return games;
-            }
-        }
-        public static List<ScheduleGamesVM> GetGames(int seasonId, int divisionId, DateTime date)
-        {
-            using (var db = new CSBCDbContext())
-            {
-                var rep = new ScheduleGameRepository(db);
-                var games = (from g in db.ScheduleGames
-                             join l in db.ScheduleLocations on g.LocationNumber equals l.LocationNumber
-                             join sd in db.ScheduleDivisions on g.ScheduleNumber equals sd.ScheduleNumber
-                             join sdh in db.ScheduleDivTeams on g.HomeTeamNumber equals sdh.TeamNumber
-                             join sdv in db.ScheduleDivTeams on g.VisitingTeamNumber equals sdv.TeamNumber
-                             join d in db.Divisions on sd.ScheduleName equals d.Div_Desc
-                             where (d.SeasonID == seasonId)
+        //public IQueryable<ScheduleGamesVM> GetGames(int seasonId, int divisionId)
+        //{
+        //    using (var db = new CSBCDbContext())
+        //    {
+        //        var rep = new ScheduleGameRepository(db);
+        //        var games = (from g in db.ScheduleGames
+        //                     from d in db.Divisions
+        //                     join l in db.ScheduleLocations on g.LocationNumber equals l.LocationNumber
+        //                     join sd in db.ScheduleDivisions on g.ScheduleNumber equals sd.ScheduleNumber
+        //                     where d.DivisionID == divisionId
+        //                     where d.SeasonID == seasonId
+        //                     select new 
+        //                     {
+        //                         g.ScheduleNumber,
+        //                         d.DivisionID,
+        //                         g.GameDate,
+        //                         g.GameTime,
+        //                         d.Div_Desc,
+        //                         g.LocationNumber,
+        //                         l.LocationName,
+        //                         g.GameNumber,
+        //                         g.HomeTeamNumber,
+        //                         g.VisitingTeamNumber,
+        //                         HomeTeamNo = db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.TeamNumber == g.HomeTeamNumber).ScheduleTeamNumber,
+        //                         VisitorTeamNo = db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.TeamNumber == g.VisitingTeamNumber).ScheduleTeamNumber
+        //                     }) as IQueryable<ScheduleGamesVM>;
+        //        foreach (var g in games)
+        //        {
+        //            g.GameType = GameTypes.Regular;
+        //        }
+        //        return games;
+        //    }
+        //}
 
+        public List<ScheduleGamesVM> GetGames(int seasonId, int divisionId, DateTime date)
+        {
+            var schedGames = GetGames(divisionId);
+            if (date != DateTime.MinValue)
+            {
+                schedGames = schedGames.Where(g => g.GameDate.Date == date.Date)
+                .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ToList<ScheduleGamesVM>();
+            }
+            if (divisionId != 0)
+            {
+                schedGames = schedGames.Where(g => g.DivisionId == divisionId)
+                .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ThenBy(g => g.DivisionId).ToList<ScheduleGamesVM>();
+            }
+            return schedGames;
+        }
+
+        public List<ScheduleGamesVM> GetGames(int divisionId)
+        {
+            using (var db = new CSBCDbContext())
+            {
+                var rep = new ScheduleGameRepository(db);
+                var games = (from g in db.ScheduleGames
+                             from d in db.Divisions
+                             from l in db.ScheduleLocations
+                             where (g.DivisionId == divisionId)
+                             where (d.DivisionID == divisionId)
+                             where (g.LocationNumber == l.LocationNumber)
                              select new
                              {
                                  g.ScheduleNumber,
-                                 d.DivisionID,
+                                 g.DivisionId,
                                  g.GameDate,
                                  g.GameTime,
                                  d.Div_Desc,
                                  g.LocationNumber,
                                  l.LocationName,
                                  g.GameNumber,
-                                 HomeTeam = (int)sdh.ScheduleTeamNumber,
-                                 VisitorTeam = (int)sdv.ScheduleTeamNumber
+                                 HomeTeamNo = db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.TeamNumber == g.HomeTeamNumber).ScheduleTeamNumber,
+                                 VisitorTeamNo = db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.TeamNumber == g.VisitingTeamNumber).ScheduleTeamNumber
                              });
                 var schedGames = new List<ScheduleGamesVM>();
+                var teams = db.Set<Team>().Where(t => t.DivisionID == divisionId).ToList<Team>();
                 foreach (var g in games)
                 {
                     var game = new ScheduleGamesVM();
 
                     game.ScheduleNumber = g.ScheduleNumber;
-                    game.DivisionId = g.DivisionID;
+                    game.DivisionId = (int)g.DivisionId;
                     game.GameDate = (DateTime)g.GameDate;
                     game.GameTime = g.GameTime;
                     game.Division = g.Div_Desc;
                     game.LocationNumber = (int)g.LocationNumber;
                     game.LocationName = g.LocationName;
                     game.GameNumber = g.GameNumber;
-                    game.HomeTeam = g.HomeTeam.ToString();
-                    game.VisitorTeam = g.VisitorTeam.ToString();
+                    game.HomeTeam = GetTeamName(teams, g.HomeTeamNo);
+                    game.VisitorTeam = GetTeamName(teams, g.VisitorTeamNo);
                     game.GameType = GameTypes.Regular;
                     schedGames.Add(game);
                 }
 
-                if (date != DateTime.MinValue) {
-                    schedGames = schedGames.Where(g => g.GameDate.Date == date.Date)
-                    .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ToList<ScheduleGamesVM>();
-                }
-                if (divisionId != 0) {
-                    schedGames = schedGames.Where(g => g.ScheduleNumber == divisionId)
-                    .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ThenBy(g => g.DivisionId).ToList<ScheduleGamesVM>();
-                }
-                    
+                schedGames = schedGames.Where(g => g.DivisionId == divisionId)
+                 .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ThenBy(g => g.DivisionId).ToList<ScheduleGamesVM>();
                 return schedGames;
             }
         }
-        public static List<ScheduleGamesVM> GetPlayoffGames(int seasonId, int divisionId, DateTime date)
+        public List<ScheduleGamesVM> GetPlayoffGames(int divisionId)
         {
             using (var db = new CSBCDbContext())
             {
                 //var rep = new SchedulePlayoffRepository(db);
                 var games = (from g in db.SchedulePlayoffs
-                             join l in db.ScheduleLocations on g.LocationNumber equals l.LocationNumber
-                             join sd in db.ScheduleDivisions on g.ScheduleNumber equals sd.ScheduleNumber
-                             join d in db.Divisions on sd.ScheduleName equals d.Div_Desc
-                             where (d.SeasonID == seasonId)
-
+                             from l in db.ScheduleLocations
+                             from d in db.Divisions
+                             where g.DivisionId == divisionId
+                             where g.LocationNumber == l.LocationNumber
+                             where g.DivisionId == d.DivisionID
                              select new
                              {
                                  g.ScheduleNumber,
@@ -161,54 +171,91 @@ namespace CSBC.Admin.Web.ViewModels
                     game.GameType = GameTypes.Playoff;
                     schedGames.Add(game);
                 }
-                if (date != DateTime.MinValue)
-                {
-                    schedGames = schedGames.Where(g => g.GameDate.Date == date.Date)
-                    .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ToList<ScheduleGamesVM>();
-                }
+
                 if (divisionId != 0)
                 {
-                    schedGames = schedGames.Where(g => g.ScheduleNumber == divisionId)
+                    schedGames = schedGames.Where(g => g.DivisionId == divisionId)
                     .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ThenBy(g => g.DivisionId).ToList<ScheduleGamesVM>();
                 }
                 return schedGames;
             }
         }
-        public static int GetScheduleNumber(string divisionName)
+        public List<ScheduleGamesVM> GetPlayoffGames(int seasonId, int divisionId, DateTime date)
         {
-            using (var db = new CSBCDbContext())
+            var schedGames = GetPlayoffGames(divisionId);
+            if (date != DateTime.MinValue)
             {
-                var scheduleNo = db.Set<ScheduleDivision>().FirstOrDefault(s => s.ScheduleName.ToUpper() == divisionName.ToUpper()).ScheduleNumber;
-                return scheduleNo;
+                schedGames = schedGames.Where(g => g.GameDate.Date == date.Date)
+                .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ToList<ScheduleGamesVM>();
+            }
+            if (divisionId != 0)
+            {
+                schedGames = schedGames.Where(g => g.DivisionId == divisionId)
+                .OrderBy(g => g.GameDate).ThenBy(g => g.GameTime).ThenBy(g => g.DivisionId).ToList<ScheduleGamesVM>();
+            }
+            return schedGames;
+
+        }
+
+        public int GetScheduleNumber(string divisionName)
+        {
+            try
+            {
+                using (var db = new CSBCDbContext())
+                {
+                    var scheduleNo = db.Set<ScheduleDivision>().FirstOrDefault(s => s.ScheduleName.ToUpper() == divisionName.ToUpper()).ScheduleNumber;
+                    return scheduleNo;
+                }
+            }
+            catch (Exception e)
+            {
+                //MasterVM.MsgBox(Msg.e()
+                return 0;
             }
         }
 
-        public static ScheduleGamesVM GetGame(int scheduleNo, int gameNo, int seasonId)
+        public static int GetScheduleNumber(int divisionId)
+        {
+            try
+            {
+                using (var db = new CSBCDbContext())
+                {
+                    var scheduleNo = db.Set<ScheduleGame>().FirstOrDefault(s => s.DivisionId == divisionId).ScheduleNumber;
+                    return scheduleNo;
+                }
+            }
+            catch (Exception e)
+            {
+                //MasterVM.MsgBox(Msg.e()
+                return 0;
+            }
+        }
+        public ScheduleGamesVM GetGame(int divisionId, int gameNo, int seasonId)
         {
             using (var db = new CSBCDbContext())
             {
-                var games = (from g in db.ScheduleGames
-                             join l in db.ScheduleLocations on g.LocationNumber equals l.LocationNumber
-                             join sd in db.ScheduleDivisions on g.ScheduleNumber equals sd.ScheduleNumber
-                             join sdh in db.ScheduleDivTeams on g.HomeTeamNumber equals sdh.TeamNumber
-                             join sdv in db.ScheduleDivTeams on g.VisitingTeamNumber equals sdv.TeamNumber
-                             join d in db.Divisions on sd.ScheduleName equals d.Div_Desc
-                             where (g.ScheduleNumber == scheduleNo && g.GameNumber == gameNo && d.SeasonID == seasonId)
-
-                             select new
-                             {
-                                 g.ScheduleNumber,
-                                 d.DivisionID,
-                                 g.GameDate,
-                                 g.GameTime,
-                                 d.Div_Desc,
-                                 g.LocationNumber,
-                                 l.LocationName,
-                                 g.GameNumber,
-                                 HomeTeam = (int)sdh.ScheduleTeamNumber,
-                                 VisitorTeam = (int)sdv.ScheduleTeamNumber
-                             });
+                var games = (
+                    from g in db.ScheduleGames
+                    from d in db.Divisions
+                    from l in db.ScheduleLocations
+                    where (g.DivisionId == divisionId && g.GameNumber == gameNo)
+                    where (d.DivisionID == divisionId)
+                    where (g.LocationNumber == l.LocationNumber)
+                    select new
+                    {
+                        g.ScheduleNumber,
+                        d.DivisionID,
+                        g.GameDate,
+                        g.GameTime,
+                        d.Div_Desc,
+                        g.LocationNumber,
+                        l.LocationName,
+                        g.GameNumber,
+                        HomeTeamNo = db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.TeamNumber == g.HomeTeamNumber).ScheduleTeamNumber,
+                        VisitorTeamNo = db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.TeamNumber == g.VisitingTeamNumber).ScheduleTeamNumber
+                    });
                 var schedGames = new List<ScheduleGamesVM>();
+                var teams = db.Set<Team>().Where(t => t.DivisionID == divisionId).ToList<Team>();
                 foreach (var g in games)
                 {
                     var game = new ScheduleGamesVM
@@ -221,9 +268,11 @@ namespace CSBC.Admin.Web.ViewModels
                         LocationNumber = (int)g.LocationNumber,
                         LocationName = g.LocationName,
                         GameNumber = g.GameNumber,
-                        HomeTeam = g.HomeTeam.ToString(),
-                        VisitorTeam = g.VisitorTeam.ToString()
+                        HomeTeamNo = g.HomeTeamNo,
+                        VisitorTeamNo = g.VisitorTeamNo
                     };
+                    game.HomeTeam = GetTeamName(teams, g.HomeTeamNo);
+                    game.VisitorTeam = GetTeamName(teams, g.VisitorTeamNo);
                     game.GameType = GameTypes.Regular;
                     schedGames.Add(game);
                 }
@@ -233,7 +282,7 @@ namespace CSBC.Admin.Web.ViewModels
 
             }
         }
-        public static ScheduleGame GetByScheduleAndGameNo(int scheduleNo, int gameNo)
+        public ScheduleGame GetByScheduleAndGameNo(int scheduleNo, int gameNo)
         {
             using (var db = new CSBCDbContext())
             {
@@ -242,7 +291,7 @@ namespace CSBC.Admin.Web.ViewModels
                 return game;
             }
         }
-        public static SchedulePlayoff GetPlayoffByScheduleAndGameNo(int scheduleNo, int gameNo)
+        public SchedulePlayoff GetPlayoffByScheduleAndGameNo(int scheduleNo, int gameNo)
         {
             using (var db = new CSBCDbContext())
             {
@@ -251,17 +300,18 @@ namespace CSBC.Admin.Web.ViewModels
                 return game;
             }
         }
-   
-        internal static ScheduleGamesVM GetPlayoffGame(int scheduleNo, int gameNo, int seasonId)
+
+        internal ScheduleGamesVM GetPlayoffGame(int divisionId, int gameNo, int seasonId)
         {
             using (var db = new CSBCDbContext())
             {
-                var games = (from g in db.SchedulePlayoffs
-                             join l in db.ScheduleLocations on g.LocationNumber equals l.LocationNumber
-                             join sd in db.ScheduleDivisions on g.ScheduleNumber equals sd.ScheduleNumber
-                             join d in db.Divisions on sd.ScheduleName equals d.Div_Desc
-                             where (g.ScheduleNumber == scheduleNo && g.GameNumber == gameNo && d.SeasonID == seasonId)
-
+                var games = (
+                    from g in db.SchedulePlayoffs
+                    from l in db.ScheduleLocations
+                    from d in db.Divisions
+                    where g.DivisionId == divisionId && g.GameNumber == gameNo
+                    where g.LocationNumber == l.LocationNumber
+                    where g.DivisionId == d.DivisionID
                              select new
                              {
                                  g.ScheduleNumber,
@@ -275,6 +325,7 @@ namespace CSBC.Admin.Web.ViewModels
                                  g.HomeTeam,
                                  g.VisitingTeam,
                                  g.Descr
+                                 
                              });
                 var schedGames = new List<ScheduleGamesVM>();
                 foreach (var g in games)
@@ -296,13 +347,13 @@ namespace CSBC.Admin.Web.ViewModels
                     game.GameType = GameTypes.Playoff;
                     schedGames.Add(game);
                 }
-            var sgame = schedGames.FirstOrDefault<ScheduleGamesVM>();
-            return sgame;
+                var sgame = schedGames.FirstOrDefault<ScheduleGamesVM>();
+                return sgame;
             }
         }
 
-        internal static void AddPlayoffGame(int scheduleNo, DateTime? date, string gameTime, int locationNumber, 
-            string homeTeam, string visitorTeam, string description)
+        internal static void AddPlayoffGame(int scheduleNo, DateTime? date, string gameTime, int locationNumber,
+            string homeTeam, string visitorTeam, string description, int divisionId)
         {
             using (var db = new CSBCDbContext())
             {
@@ -315,7 +366,8 @@ namespace CSBC.Admin.Web.ViewModels
                     LocationNumber = locationNumber,
                     HomeTeam = homeTeam,
                     VisitingTeam = visitorTeam,
-                    Descr = description
+                    Descr = description,
+                    DivisionId = divisionId
                 };
                 rep.Insert(game);
                 db.SaveChanges();
@@ -327,6 +379,26 @@ namespace CSBC.Admin.Web.ViewModels
             {
                 var rep = new ScheduleDivTeamsRepository(db);
                 return rep.GetTeamNo(scheduleNumber, teamNo);
+            }
+        }
+        private static string GetTeamName(List<Team> teams, int teamNo)
+        {
+            try
+            {
+                var team = teams.FirstOrDefault(t => Convert.ToInt32(t.TeamNumber) == teamNo);
+                if (String.IsNullOrEmpty(team.TeamName))
+                {
+                    return team.Color.ColorName + "(" + teamNo + ")";
+                }
+                else
+                {
+                    return team.TeamName;
+                }
+            }
+
+            catch
+            {
+                return "";
             }
         }
     }

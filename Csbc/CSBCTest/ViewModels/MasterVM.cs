@@ -35,6 +35,7 @@ namespace CSBC.Admin.Web.ViewModels
             }
             return functionReturnValue;
         }
+
         public static void MsgBox(Page page, string Message)
         {
             Label strScript = new Label();

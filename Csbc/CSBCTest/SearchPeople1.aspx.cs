@@ -20,16 +20,19 @@ namespace CSBC.Admin.Web
 
         private void SearchPeople()
         {
-            var rep = new PersonRepository(new CSBCDbContext());
-            if (String.IsNullOrEmpty(txtLastName.Text) && (String.IsNullOrEmpty(txtFirstName.Text)))
+            using (var db = new CSBCDbContext())
             {
-                MasterVM.MsgBox(this, "A search value must be entered");
-            }
-            else
-            {
-                var people = rep.FindPeopleByLastAndFirstName(txtLastName.Text, txtFirstName.Text, checkPlayersOnly.Checked).ToList<Person>();
-                grdPeople.DataSource = people;
-                grdPeople.DataBind();
+                var rep = new PersonRepository(db);
+                if (String.IsNullOrEmpty(txtLastName.Text) && (String.IsNullOrEmpty(txtFirstName.Text)))
+                {
+                    MasterVM.MsgBox(this, "A search value must be entered");
+                }
+                else
+                {
+                    var people = rep.FindPeopleByLastAndFirstName(txtLastName.Text, txtFirstName.Text, checkPlayersOnly.Checked).ToList<Person>();
+                    grdPeople.DataSource = people;
+                    grdPeople.DataBind();
+                }
             }
         }
         protected void btnSearch_Click(object sender, EventArgs e)

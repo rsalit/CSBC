@@ -67,15 +67,15 @@ namespace CSBC.Admin.Web
             base.Page_Load(sender, e);
             if (Page.IsPostBack == false)
             {
-                Calendar1.SelectedDate = DateTime.Today;
+                txtScheduleDate.Text = DateTime.Today.ToShortDateString();
                 //Format(Now(), "d/m/y")
                 ScheduleDate = DateTime.Today;
-                this.Calendar1.TodaysDate = DateTime.Now;
-                this.Calendar1.TodayDayStyle.BackColor = System.Drawing.Color.LightGray;
+                //this.Calendar1.TodaysDate = DateTime.Now;
+                //this.Calendar1.TodayDayStyle.BackColor = System.Drawing.Color.LightGray;
 
                 LoadCombos();
                 cmbDivisions.SelectedIndex = 0;
-                ScheduleNo = ScheduleGamesVM.GetScheduleNumber(cmbDivisions.SelectedValue);
+                ScheduleNo = ScheduleGamesVM.GetScheduleNumber(Convert.ToInt32(cmbDivisions.SelectedValue));
                 radioRegularorPlayoff.SelectedIndex = 0;
                 panelPlayoffGrid.Visible = false;
                 panelRegularGamesGrid.Visible = true;
@@ -96,7 +96,7 @@ namespace CSBC.Admin.Web
 
         private void UpdateRow(int gameNo)
         {
-            var scheduleNo = ScheduleGamesVM.GetScheduleNumber(ddlDivisions.SelectedValue);
+            var scheduleNo = ScheduleGamesVM.GetScheduleNumber(Convert.ToInt32(ddlDivisions.SelectedValue));
             if (radioRegularorPlayoff.SelectedIndex == 0)
                 UpdateRegularSeasonGame(scheduleNo, gameNo);
             else
@@ -111,7 +111,8 @@ namespace CSBC.Admin.Web
             {
                 if (gameNo > 0)
                 {
-                    var game = ScheduleGamesVM.GetPlayoffByScheduleAndGameNo(scheduleNo, gameNo);
+                    var vm = new ScheduleGamesVM();
+                    var game = vm.GetPlayoffByScheduleAndGameNo(scheduleNo, gameNo);
                     if (game != null)
                     {
                         game.GameDate = ConcatDateTime(mskDate.Text, txtTime.Text);
@@ -120,6 +121,7 @@ namespace CSBC.Admin.Web
                         game.HomeTeam = txtHome.Text;
                         game.VisitingTeam = txtVisitor.Text;
                         game.Descr = txtDescr.Text;
+                        game.DivisionId = Convert.ToInt32(ddlDivisions.SelectedValue);
                         using (var db = new CSBCDbContext())
                         {
                             var rep = new SchedulePlayoffRepository(db);
@@ -133,7 +135,7 @@ namespace CSBC.Admin.Web
                     var date = ConcatDateTime(mskDate.Text, txtTime.Text);
                     
                     ScheduleGamesVM.AddPlayoffGame(scheduleNo, date, txtTime.Text,
-                        Convert.ToInt32(cmbVenues.SelectedItem.Value), txtHome.Text, txtVisitor.Text, txtDescr.Text);
+                        Convert.ToInt32(cmbVenues.SelectedItem.Value), txtHome.Text, txtVisitor.Text, txtDescr.Text,Convert.ToInt32(cmbDivisions.SelectedValue));
                 }
 
             }
@@ -146,7 +148,8 @@ namespace CSBC.Admin.Web
 
         private void UpdateRegularSeasonGame(int scheduleNo, int gameNo)
         {
-            var game = ScheduleGamesVM.GetByScheduleAndGameNo(scheduleNo, gameNo);
+            var vm = new ScheduleGamesVM();
+            var game = vm.GetByScheduleAndGameNo(scheduleNo, gameNo);
 
             try
             {
@@ -185,7 +188,7 @@ namespace CSBC.Admin.Web
 
         private void AddRow()
         {
-            var scheduleNo = ScheduleGamesVM.GetScheduleNumber(ddlDivisions.SelectedValue);
+            var scheduleNo = ScheduleGamesVM.GetScheduleNumber(Convert.ToInt32(ddlDivisions.SelectedValue));
             if (radioRegularorPlayoff.SelectedIndex == 0)
                 AddRegularSeasonGame(scheduleNo);
             else
@@ -227,13 +230,14 @@ namespace CSBC.Admin.Web
                 var game = new SchedulePlayoff();
                 try
                 {
-                    game.ScheduleNumber = ScheduleNo;
+                    game.ScheduleNumber = scheduleNo;
                     game.GameDate = (DateTime)ConcatDateTime(mskDate.Text, txtTime.Text);
                     game.GameTime = txtTime.Text;
                     game.HomeTeam = txtHome.Text;
                     game.VisitingTeam = txtVisitor.Text;
                     game.LocationNumber = Convert.ToInt32(cmbVenues.SelectedItem.Value);
                     game.Descr = txtDescr.Text;
+                    game.DivisionId = Convert.ToInt32(ddlDivisions.SelectedValue);
                     var newGame = rep.Insert(game);
                     db.SaveChanges(); //this should be in UOM!
                     GameNo = newGame.GameNumber;
@@ -430,12 +434,12 @@ namespace CSBC.Admin.Web
             {
                 var divisions = rep.GetDivisions(Master.SeasonId).ToList<Division>();
                 cmbDivisions.DataSource = divisions;
-                cmbDivisions.DataValueField = "Div_Desc";
+                cmbDivisions.DataValueField = "DivisionID";
                 cmbDivisions.DataTextField = "Div_Desc";
                 cmbDivisions.DataBind();
 
                 ddlDivisions.DataSource = divisions;
-                ddlDivisions.DataValueField = "Div_Desc";
+                ddlDivisions.DataValueField = "DivisionID";
                 ddlDivisions.DataTextField = "Div_Desc";
                 ddlDivisions.DataBind();
             }
@@ -471,12 +475,21 @@ namespace CSBC.Admin.Web
         {
             try
             {
-                var date = getDateToQuery();
+                List<ScheduleGamesVM> games;
+                var vm = new ScheduleGamesVM();
 
-                var games = ScheduleGamesVM.GetGames(Master.SeasonId, ScheduleNo, date);
+                if (checkAllDates.Checked)
+                {
+                    games = vm.GetGames(Convert.ToInt32(cmbDivisions.SelectedValue)).ToList();
+                }
+                else
+                {
+                    var date = getDateToQuery();
+                    games = vm.GetGames(Master.SeasonId, Convert.ToInt32(cmbDivisions.SelectedValue), date);
+                }
                 grdGames.DataSource = games.ToList<ScheduleGamesVM>();
                 grdGames.DataBind();
-
+                
             }
             catch (Exception ex)
             {
@@ -491,20 +504,29 @@ namespace CSBC.Admin.Web
             if (checkAllDates.Checked)
                 date = DateTime.MinValue;
             else
-                date = Calendar1.SelectedDate;
+            {
+                var tryDate = DateTime.TryParse(txtScheduleDate.Text, out date);
+            }
             return date;
         }
 
         private void LoadPlayoffGames()
         {
             try
-            {
-                var date = getDateToQuery();
-                var games = ScheduleGamesVM.GetPlayoffGames(Master.SeasonId, ScheduleNo, date);
+            { 
+                List<ScheduleGamesVM> games;
+                var vm = new ScheduleGamesVM();
+                if (checkAllDates.Checked)
+                {
+                    games = vm.GetPlayoffGames(Convert.ToInt32(cmbDivisions.SelectedValue));
+                }
+                else
+                {
+                    var date = getDateToQuery();
+                    games = vm.GetPlayoffGames(Master.SeasonId, Convert.ToInt32(cmbDivisions.SelectedValue), date);
+                }
                 grdPlayoffGames.DataSource = games.ToList<ScheduleGamesVM>();
                 grdPlayoffGames.DataBind();
-
-
             }
             catch (Exception ex)
             {
@@ -515,7 +537,9 @@ namespace CSBC.Admin.Web
         protected void Calendar1_SelectionChanged(object sender, System.EventArgs e)
         {
             ClearFields();
-            mskDate.Text = Calendar1.SelectedDate.ToShortDateString();
+            DateTime date = DateTime.Today;
+            var tryDate = DateTime.TryParse(txtScheduleDate.Text, out date);
+            mskDate.Text = date.ToShortDateString();
             LoadGames();
         }
 
@@ -531,10 +555,9 @@ namespace CSBC.Admin.Web
 
         private void SelectGame()
         {
-            ClearFields();
-            if (checkAllDivisions.Checked)
-                ScheduleNo = 0;
-            else
+            //if (checkAllDivisions.Checked)
+            //    ScheduleNo = 0;
+            //else
                 ScheduleNo = Convert.ToInt32(grdGames.SelectedRow.Cells[0].Text);
             GameNo = Convert.ToInt32(grdGames.SelectedRow.Cells[1].Text);
             Session["LocationNumber"] = Convert.ToInt32(grdGames.SelectedRow.Cells[2].Text);
@@ -556,6 +579,7 @@ namespace CSBC.Admin.Web
                 txtDescr.Visible = false;
                 cmbDivisions.Enabled = false;
             }
+            ClearFields();
             cmbVenues.SelectedIndex = Convert.ToInt32(grdGames.SelectedRow.Cells[8].Text);
             cmbDivisions.SelectedValue = grdGames.SelectedRow.Cells[12].Text;
             txtDescr.Text = grdGames.SelectedRow.Cells[13].Text;
@@ -610,40 +634,45 @@ namespace CSBC.Admin.Web
             var gameNo = Convert.ToInt32(parameters[1]);
             GameNo = gameNo;
             ScheduleGamesVM game;
+            var vm = new ScheduleGamesVM();
             //get games
             if (e.CommandName == "SelectGame")
             {
-
-                game = ScheduleGamesVM.GetGame(scheduleNo, gameNo, Master.SeasonId);
-
+                game = vm.GetGame(Convert.ToInt32(cmbDivisions.SelectedValue), gameNo, Master.SeasonId);
             }
             else
             {
-                game = ScheduleGamesVM.GetPlayoffGame(scheduleNo, gameNo, Master.SeasonId);
+                game = vm.GetPlayoffGame(Convert.ToInt32(cmbDivisions.SelectedValue), gameNo, Master.SeasonId);
             }
             LoadGameDetail(game);
         }
 
         private void LoadGameDetail(ScheduleGamesVM game)
         {
-            ddlDivisions.SelectedValue = game.Division;
+            ddlDivisions.SelectedValue = game.DivisionId.ToString();
             mskDate.Text = game.GameDate.ToShortDateString();
             txtTime.Text = game.GameTime;
             //cmbVenues.SelectedItem.Value = game.LocationNumber.ToString();
             cmbVenues.SelectedValue = game.LocationNumber.ToString();
-            txtHome.Text = game.HomeTeam.ToString();
-            txtVisitor.Text = game.VisitorTeam.ToString();
+            
             if (game.GameType == ScheduleGamesVM.GameTypes.Playoff)
             {
+                txtHome.Text = game.HomeTeam;
+                txtVisitor.Text = game.VisitorTeam;
                 txtDescr.Text = game.Description;
+            }
+            else
+            {
+                txtHome.Text = game.HomeTeamNo.ToString();
+                txtVisitor.Text = game.VisitorTeamNo.ToString();
             }
         }
 
         protected void cmbDivisions_SelectedIndexChanged(object sender, EventArgs e)
         {
             //get ScheduleNumber of 
-            var divisionName = cmbDivisions.SelectedValue;
-            int scheduleNumber = ScheduleGamesVM.GetScheduleNumber(divisionName);
+            var divisionId = Convert.ToInt32(cmbDivisions.SelectedValue);
+            int scheduleNumber = ScheduleGamesVM.GetScheduleNumber(divisionId);
             ScheduleNo = scheduleNumber;
             LoadGames();
 
@@ -663,21 +692,27 @@ namespace CSBC.Admin.Web
 
         protected void checkAllDates_CheckedChanged(object sender, EventArgs e)
         {
-            //Calendar1.Enabled = !(checkAllDates.Checked);
-
-        }
-
-        protected void checkAllDivisions_CheckedChanged(object sender, EventArgs e)
-        {
-            cmbDivisions.Enabled = !(checkAllDivisions.Checked);
-            ScheduleNo = 0;
+            txtScheduleDate.Enabled = !(checkAllDates.Checked);
             LoadGames();
 
         }
 
+        //protected void checkAllDivisions_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    cmbDivisions.Enabled = !(checkAllDivisions.Checked);
+        //    ScheduleNo = 0;
+        //    LoadGames();
+
+        //}
+
         protected void grdGames_SelectedIndexChanged(object sender, EventArgs e)
         {
             var x = grdGames.SelectedIndex;
+        }
+
+        protected void txtScheduleDate_TextChanged(object sender, EventArgs e)
+        {
+            LoadGames();
         }
 
 

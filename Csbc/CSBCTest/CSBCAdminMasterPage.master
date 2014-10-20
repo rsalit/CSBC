@@ -100,22 +100,22 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="reports/BoardMembers.rpt">Board Members</a></li>
-                                    <li><a href="ReportPlayers.aspx">Coaches</a></li>
+                                   <%-- <li><a href="reports/BoardMembers.rpt">Board Members</a></li>--%>
+                                   <%-- <li><a href="ReportPlayers.aspx">Coaches</a></li>
                                     <li><a href="ReportPlayers.aspx">Directors Phones</a></li>
                                     <li><a href="ReportPlayers.aspx">Divisions</a></li>
-                                    <li><a href="ReportSchedules.aspx">Games Schedules</a></li>
-                                    <li><a href="ReportPlayers.aspx">Player Lists</a></li>
-                                    <li><a href="ReportRefunds.aspx">Refunds</a></li>
+                                    <li><a href="ReportSchedules.aspx">Games Schedules</a></li>--%>
+                                    <li><a href="RptDraftList.aspx">Draft Lists</a></li>
+                                   <%-- <li><a href="ReportRefunds.aspx">Refunds</a></li>
                                     <li><a href="ReportPlayers.aspx">Sponsors</a></li>
                                     <li><a href="ReportPlayers.aspx">Sponsor Books</a></li>
-                                    <li><a href="ReportRosters.aspx">Team Rosters</a></li>
+                                    <li><a href="ReportRosters.aspx">Team Rosters</a></li>--%>
                                     <!--<li><a href="ReportTryouts.aspx">Tryouts (Draft list)</a></li>-->
-                                    <li><a href="report.aspx?Report=TryoutsAll.rpt">Tryouts (Draft List)</a></li>
-                                    <li><a href="ReportPlayers.aspx">Uniforms</a></li>
+                                  <%--  <li><a href="report.aspx?Report=TryoutsAll.rpt">Tryouts (Draft List)</a></li>--%>
+                                    <%--<li><a href="ReportPlayers.aspx">Uniforms</a></li>
                                     <li><a href="ReportUnpaid.aspx">Unpaid List</a></li>
                                     <li><a href="ReportVolunteers.aspx">Volunteers</a></li>
-                                    <li><a href="ReportPlayers.aspx">Waiting List</a></li>
+                                    <li><a href="ReportPlayers.aspx">Waiting List</a></li>--%>
                                     <%--<li><a href="RptDraftList.aspx">Draft List</a></li>
                                      <li><a href="ReportForm.aspx">Reports</a></li>--%>
                                 </ul>

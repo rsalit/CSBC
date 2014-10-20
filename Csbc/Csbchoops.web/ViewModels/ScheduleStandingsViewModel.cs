@@ -36,48 +36,8 @@ namespace Csbchoops.Web.ViewModels
                 var games = rep.GetSeasonGames(divisionNo).ToList<ScheduleGame>();
                 var teams = GetDivisionTeams(divisionNo);
                 var teamRecords = GetTeamRecords(teams, games);
-                return teamRecords.OrderBy(t => t.Pct).ToList();
+                return teamRecords.OrderByDescending(t => t.Pct).ThenByDescending(t => t.Won).ToList();
             }
-
-
-            //var games = from g in db.ScheduleGames
-            //            from d in db.Divisions
-            //            where g.DivisionId == d.DivisionID
-            //            && g.ScheduleNumber == divisionNo
-            //                select new 
-            //              {
-            //                  DivisionDescription = d.Div_Desc,
-            //                  DivisionID = d.DivisionID,
-            //                  GameDate = g.GameDate,
-            //                  GameTimeString = g.GameTime,
-            //                  LocationName = l.LocationName,
-            //                  GameNumber = g.GameNumber,
-            //                  VisitingTeamNumber = g.VisitingTeamNumber,
-            //                  HomeTeamNumber = g.HomeTeamNumber,
-            //                  ScheduleNumber = s.ScheduleNumber
-            //              });;
-
-
-            //var teamRecords = new List<ScheduleStandingsViewModel>();
-            //foreach (var game in games)
-            //{
-            //    ScheduleStandingsViewModel record = new ScheduleStandingsViewModel();
-            //    record.TeamNo = (int)row[0];
-            //    record.TeamName = (string)row[1];
-            //    record.ScheduleName = (string)row[2];
-            //    record.DivNo = (string)row[3];
-            //    record.Team = (string)row[4];
-            //    record.Won = (int)row[5];
-            //    record.Lost = (int)row[6];
-            //    record.Pct = (decimal)row[7];
-            //    record.Tiebreaker = (int)row[8];
-            //    record.Streak = (int)row[9];
-            //    record.PF = (int)row[10];
-            //    record.PA = (int)row[11];
-            //    record.GB = (int)row[12];
-            //    teamRecords.Add(record);
-            //}
-
         }
 
         private List<ScheduleStandingsViewModel> GetTeamRecords(List<Team> teams, List<ScheduleGame> games)
@@ -101,9 +61,10 @@ namespace Csbchoops.Web.ViewModels
 
             if (Int32.TryParse(team.TeamNumber, out teamNo)) ///getting team no!
             {
-                var scheduleTeamNo = GetTeamNo(games.First().ScheduleNumber, teamNo);
+                var teamNumber = GetTeamNo(games.First().ScheduleNumber, teamNo);
                 var seasonRecord = new ScheduleStandingsViewModel
                    {
+                       TeamNo = Convert.ToInt32(team.TeamNumber),
                        TeamName = team.TeamName,
                        DivNo = team.DivisionID.ToString(),
                        Won = 0,
@@ -112,12 +73,12 @@ namespace Csbchoops.Web.ViewModels
                        PA = 0
                    };
 
-                var records = games.Where(g => g.HomeTeamNumber == teamNo || g.VisitingTeamNumber == teamNo);
+                var records = games.Where(g => g.HomeTeamNumber == teamNumber || g.VisitingTeamNumber == teamNumber);
                 foreach (var record in records)
                 {
                     if (record.HomeTeamScore > 0 || record.VisitingTeamScore > 0)
                     {
-                        if (teamNo == record.HomeTeamNumber)
+                        if (teamNumber == record.HomeTeamNumber)
                         {
                             seasonRecord.PA += (int)record.VisitingTeamScore;
                             seasonRecord.PF += (int)record.HomeTeamScore;
@@ -129,7 +90,7 @@ namespace Csbchoops.Web.ViewModels
                         }
                         else
                         {
-                            if (teamNo == record.VisitingTeamNumber)
+                            if (teamNumber == record.VisitingTeamNumber)
                             {
                                 seasonRecord.PF += (int)record.VisitingTeamScore;
                                 seasonRecord.PA += (int)record.HomeTeamScore;
@@ -142,7 +103,10 @@ namespace Csbchoops.Web.ViewModels
                     }
                 }
                 if ((seasonRecord.Won + seasonRecord.Lost) > 0)
-                    seasonRecord.Pct = seasonRecord.Won / (seasonRecord.Won + seasonRecord.Lost) / 100;
+                {
+                    Decimal Pct = ((decimal)seasonRecord.Won / (decimal)(seasonRecord.Won + seasonRecord.Lost)) * 100;
+                    seasonRecord.Pct = Pct;
+                }
                 else
                     seasonRecord.Pct = 0;
                 return seasonRecord;
@@ -156,7 +120,7 @@ namespace Csbchoops.Web.ViewModels
         {
             using (var db = new CSBCDbContext())
             {
-                return db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.DivisionNumber == divisionNo && t.ScheduleTeamNumber == teamNo).ScheduleTeamNumber;
+                return db.Set<ScheduleDivTeam>().FirstOrDefault(t => t.DivisionNumber == divisionNo && t.ScheduleTeamNumber == teamNo).TeamNumber;
             }
 
         }
@@ -165,10 +129,24 @@ namespace Csbchoops.Web.ViewModels
         {
             using (var db = new CSBCDbContext())
             {
+                var repoColor = new ColorRepository(db);
+                var colors = repoColor.GetAll();
                 var rep = new TeamRepository(db);
                 var teams = rep.GetDivisionTeams(divisionNo);
-                return teams.ToList<Team>();
+                var listTeams = GetTeamNames(teams, colors).ToList<Team>();
+                return listTeams;
             }
+        }
+
+        private IQueryable<CSBC.Core.Models.Team> GetTeamNames(IQueryable<CSBC.Core.Models.Team> teams, IQueryable<Color> colors)
+        {
+
+            foreach (var team in teams)
+            {
+                //team.Color = colors.FirstOrDefault(c => c.ID == ;
+                team.TeamName = team.Color.ColorName + "(" + team.TeamNumber + ")";
+            }
+            return teams;
         }
     }
 }

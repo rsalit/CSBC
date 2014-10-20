@@ -1,4 +1,5 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="Csbchoops.Web.GameSchedules" Title="Schedule / Standings" CodeBehind="GameSchedules.aspx.cs" %>
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="Csbchoops.Web.GameSchedules" Title="Schedule / Standings" CodeBehind="GameSchedules.aspx.cs"
+    MaintainScrollPositionOnPostback ="true" %>
 
 <%@ Register Src="~/MainMenu.ascx" TagPrefix="uc1" TagName="MainMenu" %>
 
@@ -11,7 +12,7 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="content/style.css" rel="stylesheet" type="text/css" />
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/3.0.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <style type="text/css">
         .style1 {
             width: 201px;
@@ -50,7 +51,7 @@
     </script>
     <script src="../js/jquery-1.10.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="Scripts/toastr.min.js"></script>
 
 </head>
 <body>
@@ -144,75 +145,80 @@
             </div>--%>
 
             <div class="row">
-                <div class="col-xs-12 col-md-12 center-block">
+                <div class="col-xs-12 col-md-12">
+                    <asp:Panel ID="panelSelections" runat="server" CssClass="panel">
+                        <div class="row left-content">
+                            <div class=" form-group-sm  col-sm-3">
+                                <label id="lblDiv" for="ddlDivisions" class="control-label text-left">Divisions:</label>
+                                <asp:DropDownList ID="ddlDivisions" runat="server"
+                                    AutoPostBack="True"
+                                    OnSelectedIndexChanged="ddlDivisions_SelectedIndexChanged"
+                                    CssClass="form-control input-sm   dropdown ">
+                                </asp:DropDownList>
+                            </div>
 
-                    <div class="row-fluid ">
-                        <div class="form-group form-inline input-sm col-sm-4">
-                            <label id="lblDiv" for="ddlDivisions" class="control-label">Divisions:</label>
-                            <asp:DropDownList ID="ddlDivisions" runat="server"
-                                AutoPostBack="True"
-                                OnSelectedIndexChanged="ddlDivisions_SelectedIndexChanged"
-                                CssClass="form-control   dropdown ">
-                            </asp:DropDownList>
-                        </div>
+                            <div class="form-group-sm   col-sm-3">
+                                <label id="lblTeams" for="cobTeams" class="control-label text-left">Team:</label>
+                                <asp:DropDownList ID="cobTeams" runat="server"
+                                    CssClass="form-control dropdown input-sm "
+                                    OnSelectedIndexChanged="cobTeams_SelectedIndexChanged1"
+                                    AutoPostBack="True">
+                                </asp:DropDownList>
+                            </div>
 
-                        <div class="form-group form-inline  input-sm col-sm-4">
-                            <label id="lblTeams" for="cobTeams" class="control-label">Team:</label>
-                            <asp:DropDownList ID="cobTeams" runat="server"
-                                CssClass="form-control dropdown  "
-                                OnSelectedIndexChanged="cobTeams_SelectedIndexChanged1"
-                                AutoPostBack="True">
-                            </asp:DropDownList>
-                        </div>
+                            <div class="form-group-sm checkbox-inline  col-sm-2">
+                                <asp:CheckBox ID="cbAllTeams"
+                                    AutoPostBack="true" runat="server"
+                                    OnCheckedChanged="cbAllTeams_CheckedChanged"
+                                    CssClass="checkbox-inline"
+                                    Checked="true"
+                                    Text="All Teams" />
+                            </div>
+                            <div class="btn-group  col-sm-2">
 
-                        <div class="form-group-sm checkbox-inline  col-sm-2">
-                            <asp:CheckBox ID="cbAllTeams"
-                                AutoPostBack="true" runat="server"
-                                OnCheckedChanged="cbAllTeams_CheckedChanged"
-                                CssClass="checkbox-inline"
-                                Checked="true"
-                                Text="All Teams" />
-                        </div>
+                                <asp:LinkButton ID="linkPanelSelection"
+                                    AutoPostBack="true"
+                                    runat="server"
+                                    Text="Show Standings"
+                                    OnClick="linkPanelSelection_Click"
+                                    CssClass="alert-link">
+                                </asp:LinkButton>
+                            </div>
 
-
-                        <div class="col-sm-2 pull-right">
-                            <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-sm" Text="Login" OnClick="btnLogin_Click1"></asp:Button>
-                            <asp:Label runat="server" ID="lblName" Visible="false" CssClass="label-info"></asp:Label>
-                            <asp:Button runat="server" ID="btnLogout" Visible="false" CssClass="badge" Text="Logout" OnClick="btnLogout_Click" />
-                            <%--data-toggle="modal"
+                            <div class="col-sm-2 pull-right">
+                                <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-sm" Text="Login" OnClick="btnLogin_Click1"></asp:Button>
+                                <asp:Label runat="server" ID="lblName" Visible="false" CssClass="text-primary"></asp:Label>
+                                <asp:Button runat="server" ID="btnLogout" Visible="false" CssClass="badge" Text="Logout" OnClick="btnLogout_Click" />
+                                <%--data-toggle="modal"
                                 data-target="#loginDialog">--%>
+                            </div>
                         </div>
-                    </div>
-                    <asp:Panel runat="server" ID="loginForm" Visible="false" class="row">
-                        <div class="col-sm-2 col-xs-12 pull-right center-block">
-                            <div class=" text-left text-info">Please sign in</div>
-                            <div class="form-group">
 
-                                <div>
-                                    <asp:TextBox ID="txtUserName" runat="server" placeholder="User Name" CssClass="form-control"></asp:TextBox>
+                        <asp:Panel runat="server" ID="loginForm" Visible="false" class="row">
+                            <div class="col-sm-8 col-xs-12 panel panel-default form-horizontal pull-right">
+
+                                <div class="panel-body">
+                                    <div class="text-left">Please sign in</div>
+                                    <div class="form-group">
+                                        <div>
+                                            <asp:TextBox ID="txtUserName" runat="server" placeholder="User Name" CssClass="form-control col-sm-4"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control col-sm-4">
+                                        </asp:TextBox>
+                                    </div>
+
+                                    <asp:Button class="btn btn-primary btn-sm " type="button" ID="btnSubmit" runat="server"
+                                        Text="Submit" OnClick="btnSubmit_Click1" />
+                                    <asp:Button class="btn btn-primary btn-sm " type="button" ID="btnCancel1" runat="server"
+                                        Text="Cancel" OnClick="btnCancel1_Click" />
                                 </div>
-
+                                <asp:Label ID="labelLoginError" runat="server" CssClass="text-warning" Visible="false" />
                             </div>
-                            <div class="form-group center-block">
-
-                                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control">
-                                </asp:TextBox>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <asp:Button class="btn btn-primary btn-sm " type="button" ID="btnSubmit" runat="server"
-                                    Text="Submit" OnClick="btnSubmit_Click1" />
-                                <%-- <asp:Button class="btn btn-primary btn-sm " type="button" ID="btnCancel1" runat="server" 
-                                Text="Cancel"  />--%>
-                            </div>
-                            <br />
-
-                            <div class="container">
-                                <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
-                            </div>
-
-                        </div>
+                        </asp:Panel>
                     </asp:Panel>
-                    <div class="row">
+                    <asp:Panel ID="panelGames" runat="server" CssClass="row">
                         <div class="col-sm-12 col-xs-12">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
@@ -221,21 +227,24 @@
                                     </div>
 
                                 </div>
-                                <div style="overflow-y: scroll; max-height: 300px">
+                                <div >
 
                                     <asp:GridView runat="server" ID="grdSchedule"
                                         AutoGenerateColumns="false"
                                         CssClass="table table-bordered  table-responsive table-condensed"
                                         RowStyle-CssClass="td"
                                         HeaderStyle-CssClass="th"
+                                        OnRowEditing="grdSchedule_RowEditing"
+                                        OnRowUpdating="grdSchedule_RowUpdating"
+                                        OnRowCancelingEdit="grdSchedule_RowCancelingEdit"
                                         ItemType="Csbchoops.Web.ViewModels.GameSchedulesViewModel">
                                         <EmptyDataTemplate>No results found</EmptyDataTemplate>
                                         <Columns>
                                             <asp:TemplateField ItemStyle-Width="20px" Visible="false" ShowHeader="true">
-                                                <HeaderTemplate>Last Name</HeaderTemplate>
+                                                <HeaderTemplate>No.</HeaderTemplate>
                                                 <HeaderStyle Width="40px" />
                                                 <ItemTemplate>
-                                                    Game Number
+                                                    <asp:Label ID="lblGameNumber" runat="server" Text='<%# Item.GameNumber %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle Width="20px"></ItemStyle>
                                             </asp:TemplateField>
@@ -294,41 +303,41 @@
                                                 </ItemTemplate>
                                                 <ItemStyle Width="60px"></ItemStyle>
                                             </asp:TemplateField>
-                                            <asp:TemplateField ItemStyle-Width="60px" ShowHeader="true">
+                                            <asp:TemplateField ItemStyle-Width="24px" ShowHeader="true">
                                                 <HeaderTemplate>Home Score</HeaderTemplate>
-                                                <HeaderStyle Width="60px" />
+                                                <HeaderStyle Width="24px" />
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblHomeScoreTeam" runat="server"
                                                         Text='<%# Item.HomeTeamScore == -1 ? 0 : Item.HomeTeamScore %>' ToolTip='<%# Item.VisitingTeamName %>'></asp:Label>
 
                                                 </ItemTemplate>
-                                                <ItemStyle Width="60px"></ItemStyle>
+                                                <ItemStyle Width="24px"></ItemStyle>
                                                 <EditItemTemplate>
                                                     <asp:TextBox ID="txtHomeScore" runat="server" Text='<%# Item.HomeTeamScore == -1 ? 0 : Item.HomeTeamScore %>' ToolTip='<%# Item.HomeTeamName %>'></asp:TextBox>
                                                 </EditItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField ItemStyle-Width="60px" ShowHeader="true">
+                                            <asp:TemplateField ItemStyle-Width="24px" ShowHeader="true">
                                                 <HeaderTemplate>Visitor Score</HeaderTemplate>
-                                                <HeaderStyle Width="60px" />
+                                                <HeaderStyle Width="24px" />
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblVisitingScore" runat="server"
                                                         Text='<%# Item.VisitingTeamScore == -1 ? 0 : Item.VisitingTeamScore %>' ToolTip='<%# Item.VisitingTeamName %>'></asp:Label>
 
                                                 </ItemTemplate>
-                                                <ItemStyle Width="60px"></ItemStyle>
+                                                <ItemStyle Width="24px"></ItemStyle>
                                                 <EditItemTemplate>
                                                     <asp:TextBox ID="txtVisitingScore" runat="server" Text='<%# Item.VisitingTeamScore == -1 ? 0 : Item.VisitingTeamScore %>' ToolTip='<%# Item.VisitingTeamName %>'></asp:TextBox>
                                                 </EditItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="" ItemStyle-Width="10px" ShowHeader="false">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="btnEdit1" runat="server"  CssClass="btn btn-sm icon-edit"></asp:LinkButton>
+                                                    <asp:LinkButton ID="btnEdit1" runat="server" CssClass="btn btn-sm icon-edit" CommandName="Edit"></asp:LinkButton>
                                                 </ItemTemplate>
                                                 <EditItemTemplate>
                                                     <asp:LinkButton ID="btnupdate" runat="server"
-                                                        CommandName="Update" Text="Update" CssClass="btn icon-save"></asp:LinkButton>
+                                                        CommandName="Update" CssClass="btn icon-save"></asp:LinkButton>
                                                     <asp:LinkButton ID="btncancel" runat="server"
-                                                        CommandName="Cancel" Text="Cancel" CssClass="btn icon-cancel"></asp:LinkButton>
+                                                        CommandName="Cancel" CssClass="btn icon-close"></asp:LinkButton>
                                                 </EditItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -337,82 +346,110 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:Panel>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <asp:Panel ID="panelStandings" runat="server" CssClass="row" Visible="false">
+                        <div class="col-sm-12">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <h3>Standings</h3>
+                                    </div>
+                                </div>
+                                <asp:GridView ID="grdStandings" runat="server"
+                                    AutoGenerateColumns="false"
+                                    CssClass="table table-bordered  table-responsive table-condensed"
+                                    RowStyle-CssClass="td"
+                                    HeaderStyle-CssClass="th"
+                                    OnRowEditing="grdSchedule_RowEditing"
+                                    OnRowUpdating="grdSchedule_RowUpdating"
+                                    ItemType="Csbchoops.Web.ViewModels.ScheduleStandingsViewModel">
+                                    <EmptyDataTemplate>No results found</EmptyDataTemplate>
+                                    <Columns>
+                                        <asp:TemplateField ItemStyle-Width="20px" Visible="true" ShowHeader="true">
+                                            <HeaderTemplate>No.</HeaderTemplate>
+                                            <HeaderStyle Width="40px" />
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTeamNo" runat="server"
+                                                    Text='<%# Item.TeamNo %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="18px"></ItemStyle>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ItemStyle-Width="20px" Visible="true" ShowHeader="true">
+                                            <HeaderTemplate>Team </HeaderTemplate>
+                                            <HeaderStyle Width="18px" />
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTeamName" runat="server"
+                                                    Text='<%# Item.TeamName%>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="18px" CssClass="text-left text-primary"></ItemStyle>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ItemStyle-Width="20px" Visible="true" ShowHeader="true">
+                                            <HeaderTemplate>Won </HeaderTemplate>
+                                            <HeaderStyle Width="18px" />
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server"
+                                                    Text='<%# Item.Won %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="18px"></ItemStyle>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ItemStyle-Width="20px" Visible="true" ShowHeader="true">
+                                            <HeaderTemplate>Lost </HeaderTemplate>
+                                            <HeaderStyle Width="18px" />
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label2" runat="server"
+                                                    Text='<%# Item.Lost %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="18px"></ItemStyle>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ItemStyle-Width="20px" Visible="true" ShowHeader="true">
+                                            <HeaderTemplate>Pct </HeaderTemplate>
+                                            <HeaderStyle Width="18px" />
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label3" runat="server"
+                                                    Text='<%# Item.Pct.ToString("#0.##") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="18px"></ItemStyle>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ItemStyle-Width="20px" Visible="true" ShowHeader="true">
+                                            <HeaderTemplate>PF </HeaderTemplate>
+                                            <HeaderStyle Width="18px" />
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label4" runat="server"
+                                                    Text='<%# Item.PF %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="18px"></ItemStyle>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ItemStyle-Width="20px" Visible="true" ShowHeader="true">
+                                            <HeaderTemplate>PA </HeaderTemplate>
+                                            <HeaderStyle Width="18px" />
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label5" runat="server"
+                                                    Text='<%# Item.PA %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="18px"></ItemStyle>
+                                        </asp:TemplateField>
 
+
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </div>
+            </div>
         </form>
     </div>
 
-    <table style="width: 149px">
-        <tr>
-            <td style="width: 125px" align="left">
-                <asp:Label ID="lblLocation" runat="server" Font-Bold="True" ForeColor="Blue" Height="16px"
-                    Width="155px" Visible="False" Font-Size="X-Small">Location:</asp:Label></td>
-        </tr>
-        <tr>
-            <td style="width: 125px" align="left">
-                <asp:Label ID="lblDate" runat="server" Font-Bold="True" Font-Size="X-Small" ForeColor="Blue"
-                    Height="16px" Visible="False" Width="155px">Date / Time:</asp:Label></td>
-        </tr>
-        <tr>
-            <td style="width: 125px" align="right">
-                <asp:Label ID="lblHome" runat="server" Font-Bold="True" ForeColor="Blue" Height="16px"
-                    Width="70px" Visible="False" Font-Size="X-Small">Home:</asp:Label>&nbsp;
-                            <asp:TextBox ID="txtHScores" runat="server" Visible="False" Width="34px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td style="width: 125px" align="right">
-                <asp:Label ID="lblVisitor" runat="server" Font-Bold="True" ForeColor="Blue" Height="16px"
-                    Width="70px" Visible="False" Font-Size="X-Small">Visitor:</asp:Label>&nbsp;
-                            <asp:TextBox ID="txtVScores" runat="server" Visible="False" Width="34px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td style="width: 125px" align="center">
-                <asp:Button ID="btnUpdate" runat="server" Text="Update" Width="86px" Visible="False" /></td>
-        </tr>
-        <tr>
-            <td align="left" style="width: 125px">
-                <asp:Label ID="lblUsername" runat="server" Font-Bold="True" ForeColor="Blue" Height="16px"
-                    Width="150px" Font-Size="Small" Visible="False">UserName:</asp:Label></td>
-        </tr>
-        <tr>
-            <td align="left" style="width: 125px">
-                <asp:TextBox ID="txtUser" runat="server" Font-Size="Small" MaxLength="12" Visible="False"
-                    Width="155px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td align="left" style="width: 125px">
-                <asp:Label ID="lblPassword" runat="server" Font-Bold="True" ForeColor="Blue" Height="16px"
-                    Width="150px" Font-Size="Small" Visible="False">Password:</asp:Label></td>
-        </tr>
-        <tr>
-            <td align="left" style="width: 125px">
-                <asp:TextBox ID="txtPwd" runat="server" Font-Size="Small" MaxLength="12" Visible="False"
-                    Width="155px" TextMode="Password"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td align="center" style="width: 125px">
-                <asp:Button ID="btnSubmitScore" runat="server" Text="Submit" Width="86px" ToolTip="Login" Visible="False" />
-            </td>
-        </tr>
-    </table>
-    <asp:LinkButton ID="lnkForgot" runat="server" Height="16px" Visible="False" Width="110px">Forgot Password</asp:LinkButton></td>
-        
-    <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Small" ForeColor="Red"
-        Width="725px"></asp:Label>
-    <td align="left" valign="top" colspan="2">
 
-
-
-        <asp:GridView ID="grdStanding">
-        </asp:GridView>
-
-        <script>
-            function ShowLogin() {
-                $("#loginForm").show();
-            }
-        </script>
+    <script>
+        function ShowLogin() {
+            $("#loginForm").show();
+        }
+    </script>
 </body>
 </html>
 

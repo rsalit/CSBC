@@ -22,15 +22,6 @@ namespace CSBC.Admin.Web {
         protected global::Juice.Datepicker dpGameDate;
         
         /// <summary>
-        /// checkAllDivisions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox checkAllDivisions;
-        
-        /// <summary>
         /// cmbDivisions control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace CSBC.Admin.Web {
         protected global::System.Web.UI.WebControls.RadioButtonList radioRegularorPlayoff;
         
         /// <summary>
+        /// txtScheduleDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtScheduleDate;
+        
+        /// <summary>
         /// checkAllDates control.
         /// </summary>
         /// <remarks>
@@ -56,15 +56,6 @@ namespace CSBC.Admin.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox checkAllDates;
-        
-        /// <summary>
-        /// Calendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
         /// panelRegularGamesGrid control.

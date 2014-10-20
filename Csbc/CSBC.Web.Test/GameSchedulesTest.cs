@@ -14,21 +14,25 @@ namespace CSBC.Web.Test
         [TestCategory("ViewModel"), TestCategory("ScheduleGames")]
         public void GetGameScheduleTest()
         {
-            var games = Csbchoops.Web.ViewModels.GameSchedulesViewModel.GetGames(71);
+            var vm = new Csbchoops.Web.ViewModels.GameSchedulesViewModel();
+
+            var games = vm.GetGames(71);
             Assert.IsTrue(games.Any());
         }
         [TestMethod]
         [TestCategory("ViewModel"), TestCategory("ScheduleGames")]
         public void GetGameScheduleByDivisionTest()
         {
-            var games = Csbchoops.Web.ViewModels.GameSchedulesViewModel.GetGames(71, 757);
+            var vm = new Csbchoops.Web.ViewModels.GameSchedulesViewModel();
+            var games = vm.GetGames(71, 757);
             Assert.IsTrue(games.Any());
         }
         [TestMethod]
         [TestCategory("ViewModel"), TestCategory("ScheduleGames")]
         public void GetGameScheduleByDivisionandTeamTest()
         {
-            var games = Csbchoops.Web.ViewModels.GameSchedulesViewModel.GetGames(71, 757, 4615);
+        var vm = new Csbchoops.Web.ViewModels.GameSchedulesViewModel();
+            var games = vm.GetGames(71, 757, 4615);
             Assert.IsTrue(games.Any());
         }
         [TestMethod]

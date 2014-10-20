@@ -7,28 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CSBC.Admin.Web {
+namespace CSBC.Admin.Web.Reports {
     
     
-    public partial class RptDraftList {
+    public partial class rptDivisionDraftList {
         
         /// <summary>
-        /// ddlDivisions control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDivisions;
-        
-        /// <summary>
-        /// btnPrint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrint;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// gridPlayers control.
@@ -38,17 +29,5 @@ namespace CSBC.Admin.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridPlayers;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new CSBC.Admin.Web.CSBCAdminMasterPage Master {
-            get {
-                return ((CSBC.Admin.Web.CSBCAdminMasterPage)(base.Master));
-            }
-        }
     }
 }
