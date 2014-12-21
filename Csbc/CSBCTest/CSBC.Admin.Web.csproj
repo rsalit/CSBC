@@ -350,6 +350,7 @@
       <DependentUpon>Coaches1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ColorsController.cs" />
+    <Compile Include="Controllers\DIrectorsController.cs" />
     <Compile Include="Division1.aspx.cs">
       <DependentUpon>Division1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1541,6 +1542,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\" />
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
     <Folder Include="DAL\" />

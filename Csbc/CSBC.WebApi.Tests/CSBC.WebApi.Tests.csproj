@@ -881,10 +881,6 @@
       <Project>{f51ef06b-4d4e-42f2-9608-a7bd63c6cdc6}</Project>
       <Name>CSBC.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CSBC.WebApi\CSBC.WebApi.csproj">
-      <Project>{E497559A-7636-422C-8245-1E40C72E239B}</Project>
-      <Name>CSBC.WebApi</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

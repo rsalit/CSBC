@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F51EF06B-4D4E-42F2-9608-A7BD63C6CDC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSBC.Core</RootNamespace>
+    <AssemblyName>CSBC.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DynamicData.EFCodeFirstProvider">
+      <HintPath>..\packages\DynamicData.EFCodeFirstProvider.0.5.1.0\lib\net40\DynamicData.EFCodeFirstProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.1.1.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqKit.1.1.1\lib\net45\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\CSBCDbContext.cs" />
+    <Compile Include="Data\CSBCDBInitializer.cs" />
+    <Compile Include="Data\CsbcUow.cs" />
+    <Compile Include="Helpers\IRepositoryProvider.cs" />
+    <Compile Include="Helpers\PredicateBuilder.cs" />
+    <Compile Include="Helpers\RepositoryFactories.cs" />
+    <Compile Include="Helpers\RepositoryProvider.cs" />
+    <Compile Include="Interfaces\ICoachRepository.cs" />
+    <Compile Include="Interfaces\IColorRepository.cs" />
+    <Compile Include="Interfaces\ICompanyRepository.cs" />
+    <Compile Include="Interfaces\ICsbcUow.cs" />
+    <Compile Include="Interfaces\IDirectorRepository.cs" />
+    <Compile Include="Interfaces\IDivisionRepository.cs" />
+    <Compile Include="Interfaces\IHouseholdRepository.cs" />
+    <Compile Include="Interfaces\IMessageRepository.cs" />
+    <Compile Include="Interfaces\IPersonRepository.cs" />
+    <Compile Include="Interfaces\IPlayerRepository.cs" />
+    <Compile Include="Interfaces\IScheduleDivTeamsRepository.cs" />
+    <Compile Include="Interfaces\IScheduleGameRepository.cs" />
+    <Compile Include="Interfaces\IScheduleGamesRepository.cs" />
+    <Compile Include="Interfaces\IScheduleLocationRepository.cs" />
+    <Compile Include="Interfaces\ISchedulePlayoffRepository.cs" />
+    <Compile Include="Interfaces\ISeasonRepository.cs" />
+    <Compile Include="Interfaces\ISponsorPaymentRepository.cs" />
+    <Compile Include="Interfaces\ISponsorRepository.cs" />
+    <Compile Include="Interfaces\ITeamRepository.cs" />
+    <Compile Include="Models\GroupTypes.cs" />
+    <Compile Include="Models\Lookups.cs" />
+    <Compile Include="Repositories\EFRepository.cs" />
+    <Compile Include="Interfaces\IContactContext.cs" />
+    <Compile Include="Interfaces\ICSBCDbContext.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IScheduleGameService.cs" />
+    <Compile Include="Interfaces\IValidationDictionary.cs" />
+    <Compile Include="Models\Calendar.cs" />
+    <Compile Include="Models\Coach.cs" />
+    <Compile Include="Models\Mapping\RoleMap.cs" />
+    <Compile Include="Repositories\MessageRepository.cs" />
+    <Compile Include="Repositories\ScheduleDivTeamsRepository.cs" />
+    <Compile Include="Repositories\SchedulePlayoffRepository.cs" />
+    <Compile Include="Models\Validation\ModelStateWrapper.cs" />
+    <Compile Include="Models\PlayerHistoryVM.cs" />
+    <Compile Include="Models\PlayerVM.cs" />
+    <Compile Include="Models\RolesRepository.cs" />
+    <Compile Include="Repositories\CoachRepository.cs" />
+    <Compile Include="Models\Color.cs" />
+    <Compile Include="Repositories\ColorRepository.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Models\Content.cs" />
+    <Compile Include="Models\Director.cs" />
+    <Compile Include="Repositories\DirectorRepository.cs" />
+    <Compile Include="Models\Division.cs" />
+    <Compile Include="Repositories\DivisionRepository.cs" />
+    <Compile Include="Models\Household.cs" />
+    <Compile Include="Repositories\HouseholdRepository.cs" />
+    <Compile Include="Models\Mapping\CalendarMap.cs" />
+    <Compile Include="Models\Mapping\CoachMap.cs" />
+    <Compile Include="Models\Mapping\ColorMap.cs" />
+    <Compile Include="Models\Mapping\CommentMap.cs" />
+    <Compile Include="Models\Mapping\CompanyMap.cs" />
+    <Compile Include="Models\Mapping\DirectorMap.cs" />
+    <Compile Include="Models\Mapping\DivisionMap.cs" />
+    <Compile Include="Models\Mapping\HouseholdMap.cs" />
+    <Compile Include="Models\Mapping\MessageMap.cs" />
+    <Compile Include="Models\Mapping\PersonMap.cs" />
+    <Compile Include="Models\Mapping\PlayerMap.cs" />
+    <Compile Include="Models\Mapping\SponsorMap.cs" />
+    <Compile Include="Models\Mapping\TeamHMap.cs" />
+    <Compile Include="Models\Mapping\UserMap.cs" />
+    <Compile Include="Models\Mapping\vw_CoachesMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Repositories\PlayerRepository.cs" />
+    <Compile Include="Models\RefBatch.cs" />
+    <Compile Include="Repositories\ScheduleLocationRepository.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\ScheduleDivision.cs" />
+    <Compile Include="Models\ScheduleDivTeam.cs" />
+    <Compile Include="Models\SchedulePlayoff.cs" />
+    <Compile Include="Models\ScheduleGame.cs" />
+    <Compile Include="Repositories\ScheduleGameRepository.cs" />
+    <Compile Include="Models\ScheduleLocation.cs" />
+    <Compile Include="Models\Season.cs" />
+    <Compile Include="Repositories\SeasonRepository.cs" />
+    <Compile Include="Models\Sponsor.cs" />
+    <Compile Include="Models\SponsorFee.cs" />
+    <Compile Include="Models\SponsorPayment.cs" />
+    <Compile Include="Repositories\SponsorPaymentRepository.cs" />
+    <Compile Include="Models\SponsorProfile.cs" />
+    <Compile Include="Models\SponsorProfileRepository.cs" />
+    <Compile Include="Repositories\SponsorRepository.cs" />
+    <Compile Include="Models\Summary.cs" />
+    <Compile Include="Models\SummaryRepository.cs" />
+    <Compile Include="Models\Team.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\TeamH.cs" />
+    <Compile Include="Repositories\TeamRepository.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="Models\Validation\ScheduleGameService.cs" />
+    <Compile Include="Models\vw_Coaches.cs" />
+    <Compile Include="Models\vw_Directors.cs" />
+    <Compile Include="Models\vw_Divisions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSBC_Components\CSBC_Components.vbproj">
+      <Project>{7942db61-e367-4ab5-b5b5-00ded76334e7}</Project>
+      <Name>CSBC_Components</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
