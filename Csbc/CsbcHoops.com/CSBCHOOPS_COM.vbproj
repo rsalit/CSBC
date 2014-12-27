@@ -163,6 +163,10 @@
     <Content Include="images\sky.jpg" />
     <Content Include="images\spacer.gif" />
     <Content Include="index.aspx" />
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Content Include="Index.html" />
     <Content Include="MainMenu.ascx" />
     <Content Include="MannyFuneral.html" />

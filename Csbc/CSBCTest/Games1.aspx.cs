@@ -122,6 +122,7 @@ namespace CSBC.Admin.Web
                         game.VisitingTeam = txtVisitor.Text;
                         game.Descr = txtDescr.Text;
                         game.DivisionId = Convert.ToInt32(ddlDivisions.SelectedValue);
+                        
                         using (var db = new CSBCDbContext())
                         {
                             var rep = new SchedulePlayoffRepository(db);
@@ -158,6 +159,16 @@ namespace CSBC.Admin.Web
                 game.LocationNumber = Convert.ToInt32(cmbVenues.SelectedItem.Value);
                 game.HomeTeamNumber = (int)ScheduleGamesVM.GetScheduleTeamNumberFromTeamNumber(scheduleNo, Convert.ToInt32(txtHome.Text));
                 game.VisitingTeamNumber = (int)ScheduleGamesVM.GetScheduleTeamNumberFromTeamNumber(scheduleNo, Convert.ToInt32(txtVisitor.Text));
+                if (game.VisitingTeamScore == null)
+                    game.VisitingTeamScore = -1;
+                else
+                    game.VisitingTeamScore = game.VisitingTeamScore;
+                if (game.HomeTeamScore == null)
+                    game.HomeTeamScore = -1;
+                else
+                    game.HomeTeamScore = game.HomeTeamScore;
+                game.DivisionId = Int32.Parse(ddlDivisions.SelectedValue);
+                game.SeasonId = Master.SeasonId;
 
                 using (var db = new CSBCDbContext())
                 {
@@ -209,6 +220,16 @@ namespace CSBC.Admin.Web
                     game.HomeTeamNumber = ScheduleGamesVM.GetScheduleTeamNumberFromTeamNumber(ScheduleNo, Convert.ToInt32(txtHome.Text));
                     game.VisitingTeamNumber = ScheduleGamesVM.GetScheduleTeamNumberFromTeamNumber(ScheduleNo, Convert.ToInt32(txtVisitor.Text));
                     game.LocationNumber = Convert.ToInt32(cmbVenues.SelectedItem.Value);
+                    if (game.VisitingTeamScore == null)
+                        game.VisitingTeamScore = -1;
+                    else
+                        game.VisitingTeamScore = game.VisitingTeamScore;
+                    if (game.HomeTeamScore == null)
+                        game.HomeTeamScore = -1;
+                    else
+                        game.HomeTeamScore = game.HomeTeamScore;
+                    game.DivisionId = Int32.Parse(ddlDivisions.SelectedValue);
+                    game.SeasonId = Master.SeasonId;
                     //_with1.Descr = txtDescr.Text;
                     var newGame = rep.Insert(game);
                     db.SaveChanges(); //this should be in UOM!

@@ -28,6 +28,7 @@ namespace CSBC.Admin.Web.ViewModels
         public int VisitorTeamNo { get; set; }
         public string HomeTeam { get; set; }
         public string VisitorTeam { get; set; }
+        public int SeasonId { get; set; }
 
         //public IQueryable<ScheduleGamesVM> GetGames(int seasonId, int divisionId)
         //{

@@ -1,28 +1,33 @@
-<%@ Page Language="VB" AutoEventWireup="false" Inherits="CSBCHOOPS_COM.Index" CodeBehind="index.aspx.vb" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Csbchoops.Web.Index" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Src="~/MainMenu.ascx" TagPrefix="uc1" TagName="MainMenu" %>
+
+
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Coral Springs Basketball Club</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <link href="Content/style.css" rel="stylesheet" />
     <style type="text/css">
         .centerlow {
             background-color: #191818;
             color: #f6f2f2;
-            text-align:center;
+            text-align: center;
             font-size: 1.3em;
-            font-weight:500;
-            padding-left:12px;
-            padding-right:12px;
-            padding-top:10px;
-            padding-bottom:10px;
+            font-weight: 500;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
-        .centerlow a {
-            font-size: 1em;
-            font-weight:400;
-        }
+
+            .centerlow a {
+                font-size: 1em;
+                font-weight: 400;
+            }
     </style>
 </head>
 <body>
@@ -49,19 +54,8 @@
                             </tr>
                             <tr>
                                 <td valign="top">
-                                    <div id="topMenu">
-                                        <a href="index.aspx">Home</a>   |   
-			                            <a href="GamesNotReady.aspx">Games</a>
-										<%--<a href="Games.aspx">Games</a> --%>  |   
-										<a href="Regtemp.aspx">Registration</a>   | 
-			<%--<a href="http://secure.csbchoops.com.140.blankserver.com/RegLogin.aspx">Registration</a>   | 
-										<a href="http://secure.csbchoops.com/RegLogin.aspx">Registration</a>   |   --%>
-                                        <a href="Documents.aspx">Documents</a>   |   
-			<a href="http://csbchoops.net">admin</a>   |   
-			<a href="Sponsors.aspx">Our Sponsors</a>   |   
-			<a href="Photos.aspx">Photo Gallery</a>   |   
-			<a href="ContactUs.aspx">Contact Us</a>
-                                    </div>
+                                    <uc1:MainMenu runat="server" ID="MainMenu" />
+
                                 </td>
                             </tr>
                         </table>
@@ -80,19 +74,17 @@
                                                 <div class="box">
                                                     <h1 class="boxHeading">Next Season Information</h1>
                                                     <div class="boxContent">
-                                                       <h2 style="text-align: center; color: red">Winter Season 2014</h2>
-                                                        <h2 style="text-align: center; color: red">Sign Ups!!
-                   
-                                                        </h2>
+                                                     
+                                                        <h2 style="text-align: center; color: red">HS Girls and Boys</h2>
+                                                        <h2 style="text-align: center; color: red">Women / Men over 18</h2>
+                                                        <h2 style="text-align: center; color: red">Sign ups!</h2>
                                                         <br />
-                                                        <h3>Saturday September 27th</h3>
-                                                        <h3>1PM - 3PM AT Cypress Hall</h3>
+                                                        <h3>Tuesday December 9th</h3>
+                                                        <h3>6:30PM - 7:45PM</h3>
+                                                        <h3>at the Coral Springs Gymnasium</h3>
 
-                                                        <h3>Girls and Boys Ages 6 and up</h3>
-                                                        <h3>HS Girls and Boys</h3>
-                                                        <br />
-                                                        <h4>Season runs from approx. November - February</h4>
-                                                        <br />
+                                                        <h4>Season runs from approx. Feb - March</h4>
+
                                                         <%--<p style="text-align: center">On line registration is not currently available. </p>--%>
                                                         <%--<h2 style="text-align: center"><a href="pdf/CSTryoutsFall2014.pdf" target="_blank">Fall Tryout Info</a></h2>
 
@@ -101,20 +93,20 @@
                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="Chart">
                                                             <tr>
                                                                 <td>
-                                                                    <asp:HyperLink ID="Link1" runat="server" Target="_blank" Width="100%">[Link1]</asp:HyperLink></td>
+                                                                    <asp:HyperLink ID="Link1" runat="server" Target="_blank" Visible="false" Width="100%">[Link1]</asp:HyperLink></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <asp:HyperLink ID="Link2" runat="server" Target="_blank" Width="100%">[Link2]</asp:HyperLink></td>
+                                                                    <asp:HyperLink ID="Link2" runat="server" Target="_blank" Visible="false" Width="100%">[Link2]</asp:HyperLink></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <asp:HyperLink ID="Link3" runat="server" Target="_blank" Width="100%">[Link3]</asp:HyperLink></td>
+                                                                    <asp:HyperLink ID="Link3" runat="server" Target="_blank" Visible="false" Width="100%">[Link3]</asp:HyperLink></td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                 </div>
-                                               <%-- <div class="box">
+                                                <%-- <div class="box">
                                                     <a href="calendar.aspx" target="_blank" class="boxHeading">Up coming events!
                                                     </a>
                                                     <div class="boxContent">
@@ -145,17 +137,17 @@
                                                 <tr>
 
                                                     <td>
-                                                        <asp:Image ID="imgStandings" runat="server" ImageUrl="images\sky.jpg" Height="139px"
+                                                        <asp:Image ID="imgStandings" runat="server" ImageUrl="images/sky.jpg" Height="139px"
                                                             Width="625px" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <p class="centerlow">To all members we are sad to 
-inform everyone that Manny Rosa passed away on 8/27/14. <br/>
-Our most deepest sympathy goes out to the family</p>
-                                                        
-                                                       <%-- <span class="reportLink"><a href="Reports/t2.pdf" target="_blank">Trainee 2 Coed</a></span>
+                                                        <p class="centerlow">
+                                                            Manny Rosa - forever in our hearts at CSBC                                                           
+                                                        </p>
+
+                                                        <%-- <span class="reportLink"><a href="Reports/t2.pdf" target="_blank">Trainee 2 Coed</a></span>
                                                         <span class="reportLink"><a href="Reports/t3.pdf" target="_blank">Trainee 3 Coed</a></span>
                                                         <span class="reportLink"><a href="Reports/t4.pdf" target="_blank">Trainee 4 Coed</a></span>
                                                         <span class="reportLink"><a href="Reports/si.pdf" target="_blank">SI Boys</a></span>
@@ -171,32 +163,12 @@ Our most deepest sympathy goes out to the family</p>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <asp:HyperLink ID="Link4" runat="server" Target="_blank" Width="100%">[Link4]</asp:HyperLink></td>
+                                                        <asp:HyperLink ID="Link4" runat="server" Target="_blank" Visible="false" Width="100%">[Link4]</asp:HyperLink>
+                                                        <asp:HyperLink ID="Link5" runat="server" Target="_blank" Visible="false" Width="100%">[Link5]</asp:HyperLink><asp:HyperLink ID="Link6" runat="server" Target="_blank" Visible="false" Width="100%">[Link6]</asp:HyperLink><asp:HyperLink ID="Link7" runat="server" Target="_blank" Visible="false" Width="100%">[Link7]</asp:HyperLink><asp:HyperLink ID="Link8" runat="server" Target="_blank" Visible="false" Width="100%">[Link8]</asp:HyperLink><asp:HyperLink ID="Link9" runat="server" Target="_blank" Visible="false" Width="100%">[Link9]</asp:HyperLink>
+                                                        <asp:HyperLink ID="Link10" runat="server" Target="_blank" Visible="false" Width="100%">[Link10]</asp:HyperLink></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:HyperLink ID="Link5" runat="server" Target="_blank" Width="100%">[Link5]</asp:HyperLink></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:HyperLink ID="Link6" runat="server" Target="_blank" Width="100%">[Link6]</asp:HyperLink></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:HyperLink ID="Link7" runat="server" Target="_blank" Width="100%">[Link7]</asp:HyperLink></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:HyperLink ID="Link8" runat="server" Target="_blank" Width="100%">[Link8]</asp:HyperLink></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:HyperLink ID="Link9" runat="server" Target="_blank" Width="100%">[Link9]</asp:HyperLink></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:HyperLink ID="Link10" runat="server" Target="_blank" Width="100%">[Link10]</asp:HyperLink></td>
-                                                </tr>
+
+
                                             </table>
                                         </div>
                                     </div>
@@ -247,7 +219,7 @@ Our most deepest sympathy goes out to the family</p>
                                                         <param name="AllowFullScreen" value="false" />
                                                         <embed src="/Movies/Sponsors.swf" quality="high" width="920" height="80" name="Sponsors" align="left"
                                                             type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
-		</embed>
+                                                        </embed>
                                                     </object>
                                                 </table>
                                             </div>

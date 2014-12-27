@@ -74,23 +74,17 @@
                                                 <div class="box">
                                                     <h1 class="boxHeading">Next Season Information</h1>
                                                     <div class="boxContent">
+                                                     <h2 style="text-align: center; color: red">Girls and Boys ages 6 and up</h2>
+                                                        <h2 style="text-align: center; color: red">HS Girls and Boys</h2>
+                                                        <h2 style="text-align: center; color: red">Women / Men over 18</h2>
+                                                        <h2 style="text-align: center; color: red">Sign ups!</h2>
                                                         <br />
-                                                        <h2 style="text-align: center; color: red">Final Winter Season 2014</h2>
-                                                        <h2 style="text-align: center; color: red">Sign Ups!!
-                   
-                                                        </h2>
-                                                        <br />
-                                                        <h3>Monday October 20th</h3>
-                                                        <h3>6PM - 7PM</h3>
-                                                        <h3>at the Coral Springs Gymnasium</h3>
+                                                        <h3>Saturday - January 10th </h3>
+                                                        <h3>3PM - 5PM</h3>
+                                                        <h3>@Veterans Building (behind the CS Gym North side lot</h3>
 
-                                                        <h3>Girls and Boys Ages 6 and up</h3>
-                                                        <h3>HS Girls and Boys</h3>
-                                                        <h4>Season runs from approx. November - February</h4>
+                                                        
 
-                                                        <hr />
-                                                        <h3 style="text-align: center; color: red">Oct 20th Board Meeting</h3>
-                                                        <h3>@7PM CS Gym</h3>
                                                         <%--<p style="text-align: center">On line registration is not currently available. </p>--%>
                                                         <%--<h2 style="text-align: center"><a href="pdf/CSTryoutsFall2014.pdf" target="_blank">Fall Tryout Info</a></h2>
 
@@ -111,6 +105,7 @@
                                                             </tr>
                                                         </table>
                                                     </div>
+                                                   
                                                 </div>
                                                 <%-- <div class="box">
                                                     <a href="calendar.aspx" target="_blank" class="boxHeading">Up coming events!
@@ -150,10 +145,7 @@
                                                 <tr>
                                                     <td>
                                                         <p class="centerlow">
-                                                            To all members we are sad to 
-inform everyone that Manny Rosa passed away on 8/27/14.
-                                                            <br />
-                                                            Our most deepest sympathy goes out to the family<br />
+                                                            Manny Rosa - forever in our hearts at CSBC                                                           
                                                         </p>
 
                                                         <%-- <span class="reportLink"><a href="Reports/t2.pdf" target="_blank">Trainee 2 Coed</a></span>
@@ -179,6 +171,7 @@ inform everyone that Manny Rosa passed away on 8/27/14.
 
 
                                             </table>
+                                             <h2 style="text-align:center;color:red;"><i>CSBC Where the Best Game is Played!!!</i></h2>
                                         </div>
                                     </div>
                                 </td>

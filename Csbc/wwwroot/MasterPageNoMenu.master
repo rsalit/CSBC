@@ -1,0 +1,45 @@
+<%@ Master Language="VB" CodeFile="MasterPageNoMenu.master.vb" Inherits="MasterPageNoMenu" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title>Coral Springs Basketball Club</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+	<body >
+		<form id="Form1" runat="server">
+			<table height="100%" cellSpacing="0" cellPadding="0" border="0">
+				<tr>
+					<td width="50%" background="images/bg_lft.gif"></td>
+					<td style="PADDING-LEFT: 28px" background="images\bg_lft.jpg"></td>
+					<td vAlign="top" bgColor="#ffffff" height="100%">
+						<table >
+							<tr>
+								<td colSpan="2" style="height: 94px">
+								    <IMG style="HEIGHT: 109px" height="109" alt="" src="Images/topCSBC.jpg" width="770" border="0">
+								</td>
+							</tr>
+							<tr>
+								<td width:768px >
+									<div class="container">
+									    <asp:Label ID="lblTitle" runat="server" CssClass="h1 text-center"></asp:Label>
+                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                    </asp:ContentPlaceHolder>
+                                        <asp:Label ID="lblErrorMSG" runat="server"></asp:Label>
+                                        								</div>
+                                    <br />
+                                    <br />
+								</td>
+							</tr>
+							<tr>
+								<td colSpan="2"><IMG height="50" src="images/footer_left.jpg" width="266"><IMG height="50" src="images/footer_right.jpg" width="504"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="50%" background="images/bg_lft.gif"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
